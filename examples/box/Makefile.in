@@ -1,0 +1,128 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_OPENGL) $(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS)
+INCPATH =	
+LFLAGS	=	$(SYSCONF_LFLAGS_OPENGL) $(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) $(SYSCONF_LIBS_OPENGL) $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ./
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= box
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	glbox.h \
+		globjwin.h
+SOURCES =	glbox.cpp \
+		globjwin.cpp \
+		main.cpp
+OBJECTS =	glbox.o \
+		globjwin.o \
+		main.o
+INTERFACES =    
+UICDECLS =      
+UICIMPLS =      
+SRCMOC	=	moc_glbox.cpp \
+		moc_globjwin.cpp
+OBJMOC	=	moc_glbox.o \
+		moc_globjwin.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake:
+	tmake box.pro
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=opengl
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+glbox.o: glbox.cpp \
+		glbox.h
+
+globjwin.o: globjwin.cpp \
+		globjwin.h \
+		glbox.h
+
+main.o: main.cpp \
+		globjwin.h
+
+moc_glbox.o: moc_glbox.cpp \
+		glbox.h
+
+moc_globjwin.o: moc_globjwin.cpp \
+		globjwin.h
+
+moc_glbox.cpp: glbox.h
+	$(MOC) glbox.h -o moc_glbox.cpp
+
+moc_globjwin.cpp: globjwin.h
+	$(MOC) globjwin.h -o moc_globjwin.cpp
+
+

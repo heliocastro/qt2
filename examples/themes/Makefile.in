@@ -1,0 +1,1138 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS)
+INCPATH =	
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ./
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= themes
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	themes.h \
+		../buttongroups/buttongroups.h \
+		../lineedits/lineedits.h \
+		../listboxcombo/listboxcombo.h \
+		../checklists/checklists.h \
+		../progressbar/progressbar.h \
+		../rangecontrols/rangecontrols.h \
+		../richtext/richtext.h \
+		wood.h \
+		methal.h
+SOURCES =	themes.cpp \
+		main.cpp \
+		../buttongroups/buttongroups.cpp \
+		../lineedits/lineedits.cpp \
+		../listboxcombo/listboxcombo.cpp \
+		../checklists/checklists.cpp \
+		../progressbar/progressbar.cpp \
+		../rangecontrols/rangecontrols.cpp \
+		../richtext/richtext.cpp \
+		wood.cpp \
+		metal.cpp
+OBJECTS =	themes.o \
+		main.o \
+		../buttongroups/buttongroups.o \
+		../lineedits/lineedits.o \
+		../listboxcombo/listboxcombo.o \
+		../checklists/checklists.o \
+		../progressbar/progressbar.o \
+		../rangecontrols/rangecontrols.o \
+		../richtext/richtext.o \
+		wood.o \
+		metal.o
+INTERFACES =    
+UICDECLS =      
+UICIMPLS =      
+SRCMOC	=	moc_themes.cpp \
+		../buttongroups/moc_buttongroups.cpp \
+		../lineedits/moc_lineedits.cpp \
+		../listboxcombo/moc_listboxcombo.cpp \
+		../checklists/moc_checklists.cpp \
+		../progressbar/moc_progressbar.cpp \
+		../rangecontrols/moc_rangecontrols.cpp \
+		../richtext/moc_richtext.cpp
+OBJMOC	=	moc_themes.o \
+		../buttongroups/moc_buttongroups.o \
+		../lineedits/moc_lineedits.o \
+		../listboxcombo/moc_listboxcombo.o \
+		../checklists/moc_checklists.o \
+		../progressbar/moc_progressbar.o \
+		../rangecontrols/moc_rangecontrols.o \
+		../richtext/moc_richtext.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake:
+	tmake themes.pro
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=full-config
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+themes.o: themes.cpp \
+		themes.h \
+		../../include/qmainwindow.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		wood.h \
+		../../include/qwindowsstyle.h \
+		../../include/qcommonstyle.h \
+		metal.h \
+		../buttongroups/buttongroups.h \
+		../lineedits/lineedits.h \
+		../../include/qgroupbox.h \
+		../../include/qframe.h \
+		../listboxcombo/listboxcombo.h \
+		../../include/qvbox.h \
+		../../include/qhbox.h \
+		../checklists/checklists.h \
+		../progressbar/progressbar.h \
+		../../include/qbuttongroup.h \
+		../../include/qtimer.h \
+		../rangecontrols/rangecontrols.h \
+		../richtext/richtext.h \
+		../../include/qtabwidget.h \
+		../../include/qiconset.h \
+		../../include/qpixmap.h \
+		../../include/qapplication.h \
+		../../include/qasciidict.h \
+		../../include/qgdict.h \
+		../../include/qtranslator.h \
+		../../include/qintdict.h \
+		../../include/qpopupmenu.h \
+		../../include/qmenudata.h \
+		../../include/qsignal.h \
+		../../include/qmenubar.h \
+		../../include/qmessagebox.h \
+		../../include/qdialog.h \
+		../../include/qplatinumstyle.h \
+		../../include/qmotifstyle.h \
+		../../include/qmotifplusstyle.h \
+		../../include/qcdestyle.h
+
+main.o: main.cpp \
+		../../include/qapplication.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qasciidict.h \
+		../../include/qgdict.h \
+		../../include/qtranslator.h \
+		../../include/qintdict.h \
+		../../include/qwindowsstyle.h \
+		../../include/qcommonstyle.h \
+		themes.h \
+		../../include/qmainwindow.h \
+		metal.h
+
+../buttongroups/buttongroups.o: ../buttongroups/buttongroups.cpp \
+		../buttongroups/buttongroups.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qbuttongroup.h \
+		../../include/qgroupbox.h \
+		../../include/qframe.h \
+		../../include/qlayout.h \
+		../../include/qabstractlayout.h \
+		../../include/qradiobutton.h \
+		../../include/qbutton.h \
+		../../include/qcheckbox.h \
+		../../include/qpushbutton.h \
+		../../include/qiconset.h \
+		../../include/qpixmap.h
+
+../lineedits/lineedits.o: ../lineedits/lineedits.cpp \
+		../lineedits/lineedits.h \
+		../../include/qgroupbox.h \
+		../../include/qframe.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qlineedit.h \
+		../../include/qcombobox.h \
+		../../include/qvalidator.h \
+		../../include/qlabel.h \
+		../../include/qlayout.h \
+		../../include/qabstractlayout.h \
+		../../include/qhbox.h
+
+../listboxcombo/listboxcombo.o: ../listboxcombo/listboxcombo.cpp \
+		../listboxcombo/listboxcombo.h \
+		../../include/qvbox.h \
+		../../include/qhbox.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qframe.h \
+		../../include/qcombobox.h \
+		../../include/qlistbox.h \
+		../../include/qscrollview.h \
+		../../include/qscrollbar.h \
+		../../include/qrangecontrol.h \
+		../../include/qdrawutil.h \
+		../../include/qpainter.h \
+		../../include/qpen.h \
+		../../include/qpointarray.h \
+		../../include/qwmatrix.h \
+		../../include/qpixmap.h \
+		../../include/qtimer.h \
+		../../include/qpushbutton.h \
+		../../include/qbutton.h \
+		../../include/qiconset.h \
+		../../include/qlabel.h \
+		../../include/qimage.h \
+		../../include/qstrlist.h
+
+../checklists/checklists.o: ../checklists/checklists.cpp \
+		../checklists/checklists.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qlistview.h \
+		../../include/qscrollview.h \
+		../../include/qframe.h \
+		../../include/qscrollbar.h \
+		../../include/qrangecontrol.h \
+		../../include/qdrawutil.h \
+		../../include/qpainter.h \
+		../../include/qpen.h \
+		../../include/qpointarray.h \
+		../../include/qwmatrix.h \
+		../../include/qvbox.h \
+		../../include/qhbox.h \
+		../../include/qlabel.h \
+		../../include/qpushbutton.h \
+		../../include/qbutton.h \
+		../../include/qiconset.h \
+		../../include/qpixmap.h \
+		../../include/qlayout.h \
+		../../include/qabstractlayout.h
+
+../progressbar/progressbar.o: ../progressbar/progressbar.cpp \
+		../progressbar/progressbar.h \
+		../../include/qbuttongroup.h \
+		../../include/qgroupbox.h \
+		../../include/qframe.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qtimer.h \
+		../../include/qradiobutton.h \
+		../../include/qbutton.h \
+		../../include/qpushbutton.h \
+		../../include/qiconset.h \
+		../../include/qpixmap.h \
+		../../include/qprogressbar.h \
+		../../include/qlayout.h \
+		../../include/qabstractlayout.h
+
+../rangecontrols/rangecontrols.o: ../rangecontrols/rangecontrols.cpp \
+		../rangecontrols/rangecontrols.h \
+		../../include/qvbox.h \
+		../../include/qhbox.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qframe.h \
+		../../include/qlcdnumber.h \
+		../../include/qbitarray.h \
+		../../include/qspinbox.h \
+		../../include/qrangecontrol.h \
+		../../include/qlabel.h \
+		../../include/qslider.h \
+		../../include/qcheckbox.h \
+		../../include/qbutton.h
+
+../richtext/richtext.o: ../richtext/richtext.cpp \
+		../richtext/richtext.h \
+		../../include/qvbox.h \
+		../../include/qhbox.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qframe.h \
+		../../include/qpushbutton.h \
+		../../include/qbutton.h \
+		../../include/qiconset.h \
+		../../include/qpixmap.h \
+		../../include/qtextview.h \
+		../../include/qscrollview.h \
+		../../include/qscrollbar.h \
+		../../include/qrangecontrol.h \
+		../../include/qdrawutil.h \
+		../../include/qpainter.h \
+		../../include/qpen.h \
+		../../include/qpointarray.h \
+		../../include/qwmatrix.h \
+		../../include/qapplication.h \
+		../../include/qasciidict.h \
+		../../include/qgdict.h \
+		../../include/qtranslator.h \
+		../../include/qintdict.h
+
+wood.o: wood.cpp \
+		wood.h \
+		../../include/qwindowsstyle.h \
+		../../include/qcommonstyle.h \
+		../../include/qstyle.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qapplication.h \
+		../../include/qwidget.h \
+		../../include/qpaintdevice.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qsizepolicy.h \
+		../../include/qasciidict.h \
+		../../include/qgdict.h \
+		../../include/qtranslator.h \
+		../../include/qintdict.h \
+		../../include/qpainter.h \
+		../../include/qpen.h \
+		../../include/qpointarray.h \
+		../../include/qwmatrix.h \
+		../../include/qdrawutil.h \
+		../../include/qpixmap.h \
+		../../include/qlabel.h \
+		../../include/qframe.h \
+		../../include/qimage.h \
+		../../include/qstrlist.h \
+		../../include/qpushbutton.h \
+		../../include/qbutton.h \
+		../../include/qiconset.h \
+		../../include/qrangecontrol.h \
+		../../include/qscrollbar.h
+
+metal.o: metal.cpp \
+		metal.h \
+		../../include/qwindowsstyle.h \
+		../../include/qcommonstyle.h \
+		../../include/qstyle.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qapplication.h \
+		../../include/qwidget.h \
+		../../include/qpaintdevice.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qsizepolicy.h \
+		../../include/qasciidict.h \
+		../../include/qgdict.h \
+		../../include/qtranslator.h \
+		../../include/qintdict.h \
+		../../include/qpainter.h \
+		../../include/qpen.h \
+		../../include/qpointarray.h \
+		../../include/qwmatrix.h \
+		../../include/qdrawutil.h \
+		../../include/qpixmap.h \
+		../../include/qlabel.h \
+		../../include/qframe.h \
+		../../include/qimage.h \
+		../../include/qstrlist.h \
+		../../include/qpushbutton.h \
+		../../include/qbutton.h \
+		../../include/qiconset.h \
+		../../include/qrangecontrol.h \
+		../../include/qscrollbar.h \
+		stonedark.xpm \
+		stone1.xpm \
+		marble.xpm
+
+moc_themes.o: moc_themes.cpp \
+		themes.h \
+		../../include/qmainwindow.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h
+
+../buttongroups/moc_buttongroups.o: ../buttongroups/moc_buttongroups.cpp \
+		../buttongroups/buttongroups.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h
+
+../lineedits/moc_lineedits.o: ../lineedits/moc_lineedits.cpp \
+		../lineedits/lineedits.h \
+		../../include/qgroupbox.h \
+		../../include/qframe.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h
+
+../listboxcombo/moc_listboxcombo.o: ../listboxcombo/moc_listboxcombo.cpp \
+		../listboxcombo/listboxcombo.h \
+		../../include/qvbox.h \
+		../../include/qhbox.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qframe.h
+
+../checklists/moc_checklists.o: ../checklists/moc_checklists.cpp \
+		../checklists/checklists.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h
+
+../progressbar/moc_progressbar.o: ../progressbar/moc_progressbar.cpp \
+		../progressbar/progressbar.h \
+		../../include/qbuttongroup.h \
+		../../include/qgroupbox.h \
+		../../include/qframe.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qtimer.h
+
+../rangecontrols/moc_rangecontrols.o: ../rangecontrols/moc_rangecontrols.cpp \
+		../rangecontrols/rangecontrols.h \
+		../../include/qvbox.h \
+		../../include/qhbox.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qframe.h
+
+../richtext/moc_richtext.o: ../richtext/moc_richtext.cpp \
+		../richtext/richtext.h \
+		../../include/qvbox.h \
+		../../include/qhbox.h \
+		../../include/qwidget.h \
+		../../include/qwindowdefs.h \
+		../../include/qobjectdefs.h \
+		../../include/qglobal.h \
+		../../include/qfeatures.h \
+		../../include/qconfig.h \
+		../../include/qstring.h \
+		../../include/qcstring.h \
+		../../include/qarray.h \
+		../../include/qgarray.h \
+		../../include/qshared.h \
+		../../include/qnamespace.h \
+		../../include/qobject.h \
+		../../include/qevent.h \
+		../../include/qregion.h \
+		../../include/qrect.h \
+		../../include/qsize.h \
+		../../include/qpoint.h \
+		../../include/qmime.h \
+		../../include/qlist.h \
+		../../include/qglist.h \
+		../../include/qcollection.h \
+		../../include/qstringlist.h \
+		../../include/qvaluelist.h \
+		../../include/qdatastream.h \
+		../../include/qiodevice.h \
+		../../include/qregexp.h \
+		../../include/qpaintdevice.h \
+		../../include/qpalette.h \
+		../../include/qcolor.h \
+		../../include/qbrush.h \
+		../../include/qcursor.h \
+		../../include/qfont.h \
+		../../include/qfontmetrics.h \
+		../../include/qfontinfo.h \
+		../../include/qstyle.h \
+		../../include/qsizepolicy.h \
+		../../include/qframe.h
+
+moc_themes.cpp: themes.h
+	$(MOC) themes.h -o moc_themes.cpp
+
+../buttongroups/moc_buttongroups.cpp: ../buttongroups/buttongroups.h
+	$(MOC) ../buttongroups/buttongroups.h -o ../buttongroups/moc_buttongroups.cpp
+
+../lineedits/moc_lineedits.cpp: ../lineedits/lineedits.h
+	$(MOC) ../lineedits/lineedits.h -o ../lineedits/moc_lineedits.cpp
+
+../listboxcombo/moc_listboxcombo.cpp: ../listboxcombo/listboxcombo.h
+	$(MOC) ../listboxcombo/listboxcombo.h -o ../listboxcombo/moc_listboxcombo.cpp
+
+../checklists/moc_checklists.cpp: ../checklists/checklists.h
+	$(MOC) ../checklists/checklists.h -o ../checklists/moc_checklists.cpp
+
+../progressbar/moc_progressbar.cpp: ../progressbar/progressbar.h
+	$(MOC) ../progressbar/progressbar.h -o ../progressbar/moc_progressbar.cpp
+
+../rangecontrols/moc_rangecontrols.cpp: ../rangecontrols/rangecontrols.h
+	$(MOC) ../rangecontrols/rangecontrols.h -o ../rangecontrols/moc_rangecontrols.cpp
+
+../richtext/moc_richtext.cpp: ../richtext/richtext.h
+	$(MOC) ../richtext/richtext.h -o ../richtext/moc_richtext.cpp
+
+
