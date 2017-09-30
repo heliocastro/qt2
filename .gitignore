@@ -1,3 +1,9 @@
+# Usual build directory
+build
+
+# Vim swap
+*.swp
+
 # Prerequisites
 *.d
 
