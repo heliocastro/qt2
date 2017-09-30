@@ -6,16 +6,10 @@ set(ICONVIEW_SRCS
     )
 
 qt2_wrap_cpp(TARGET iconview
-    SOURCES qiconview.cpp
+    SOURCES
+    qiconview.cpp
+    qiconview.h
     VERBOSE)
 
-add_library(iconview OBJECT ${ICONVIEW_SRCS})
+add_library(iconview OBJECT ${ICONVIEW_SRCS} ${MOC_ICONVIEW_SRCS})
 add_dependencies(iconview moc_iconview)
-
-target_compile_definitions(iconview
-    PUBLIC ${QT_DEFINITIONS}
-)
-
-# This is really not the most optimal or pretty way to add the include directories
-# But at least we avoid to polute the main cmakelist files
-target_include_directories(iconview PUBLIC ${PROJECT_SOURCE_DIR}/include)

@@ -11,7 +11,7 @@ include(Qt2WrapCpp)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-#set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--as-needed -Wl,--no-undefined")
+set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--as-needed -Wl,--no-undefined")
 
 option(ENABLE_XFT "Enable support for Anti-Aliased fonts." ON)
 option(ENABLE_SESSION_MANAGEMENT "Support X Session Management, links in -lSM -lICE" ON)
@@ -41,6 +41,10 @@ endif()
 
 if(SYSTEM_LIBPNG)
     find_package(PNG REQUIRED)
+endif()
+
+if(SYSTEM_LIBMNG)
+    pkg_search_module(MNG libmng REQUIRED)
 endif()
 
 if(SYSTEM_JPEG)

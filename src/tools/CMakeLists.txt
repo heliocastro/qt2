@@ -43,13 +43,3 @@ elseif(MSVC)
 endif()
 
 add_library(tools OBJECT ${TOOLS_SRCS})
-
-target_compile_definitions(tools
-    PUBLIC ${QT_DEFINITIONS}
-)
-
-# This is really not the most optimal or pretty way to add the include directories
-# But at least we avoid to polute the main cmakelist files
-target_include_directories(tools
-    PUBLIC ${PROJECT_SOURCE_DIR}/include
-)

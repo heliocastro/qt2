@@ -1,5 +1,10 @@
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
+if(ENABLE_XFT)
+    list(APPEND QT_DEFINITIONS QT_XFT)
+    include_directories(${FREETYPE_INCLUDE_DIR_ft2build})
+endif()
+
 set(KERNEL_SRCS
     qabstractlayout.cpp
     qaccel.cpp
@@ -87,14 +92,38 @@ set(KERNEL_SRCS
     qwmatrix.cpp
 )
 
-qt2_wrap_cpp(TARGET kernel
-    SOURCES qapplication_x11.cpp
+qt2_wrap_cpp(
+    TARGET kernel
+    SOURCES
+    qapplication_x11.cpp
     qmovie.cpp
     qthread_unix.cpp
-    VERBOSE
+    qabstractlayout.h
+    qaccel.h
+    qapplication.h
+    qasyncio.h
+    qclipboard.h
+    qdialog.h
+    qdragobject.h
+    qguardedptr.h
+    qlayout.h
+    qtranslator.h
+    qnetworkprotocol.h
+    qsemimodal.h
+    qsessionmanager.h
+    qsignalmapper.h
+    qsizegrip.h
+    qsocketnotifier.h
+    qsound.h
+    qstyle.h
+    qstylesheet.h
+    qtimer.h
+    qlocalfs.h
+    qurloperator.h
+    qwidget.h
     )
 
-add_library(kernel OBJECT ${KERNEL_SRCS} ${LIBPNG_OBJECT})
+add_library(kernel OBJECT ${KERNEL_SRCS} ${MOC_KERNEL_SRCS})
 add_dependencies(kernel moc_kernel)
 
 if(NOT SYSTEM_LIBPNG)
@@ -103,12 +132,4 @@ if(NOT SYSTEM_LIBPNG)
 )
 endif()
 
-target_compile_definitions(kernel
-    PUBLIC ${QT_DEFINITIONS}
-)
 
-# This is really not the most optimal or pretty way to add the include directories
-# But at least we avoid to polute the main cmakelist files
-target_include_directories(kernel
-    PUBLIC ${PROJECT_SOURCE_DIR}/include
-)

@@ -1,19 +1,35 @@
 function(qt2_wrap_cpp)
     set(options VERBOSE)
-    set(oneValueArgs TARGET)
+    set(oneValueArgs TARGET OUTVAR)
     set(multiValueArgs SOURCES)
-    cmake_parse_arguments(qt2_wrap_cpp "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
-    foreach(mocable ${qt2_wrap_cpp_SOURCES})
-        string(REGEX REPLACE ".cpp\$" ".moc"  outfileName "${mocable}")
-        set(outfile "${CMAKE_CURRENT_BINARY_DIR}/${outfileName}")
-        if(${qt2_wrap_cpp_VERBOSE})
-            message(STATUS "Generating ${outfile}")
+    cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
+
+    foreach(mocable ${arg_SOURCES})
+        string(FIND ${mocable} ".cpp" IS_CPP)
+        string(REGEX REPLACE ".cpp|.h\$" ""  outfileName "${mocable}")
+        # Only generates moccpp if header file exists
+        if("${IS_CPP}" LESS "0")
+            add_custom_command(
+                OUTPUT moc_${outfileName}.cpp
+                COMMAND moc ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o moc_${outfileName}.cpp
+                DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${outfileName}.h
+            )
+            # Check if header really generates output
+            set(outFiles ${outFiles} moc_${outfileName}.cpp)
+            list(APPEND MOCCPP ${CMAKE_CURRENT_BINARY_DIR}/moc_${outfileName}.cpp)
+        else()
+            add_custom_command(
+                OUTPUT ${outfileName}.moc
+                COMMAND moc ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o ${outfileName}.moc
+                DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${mocable}
+            )
+            set(outFiles ${outFiles} ${outfileName}.moc)
         endif()
-        add_custom_command(
-            OUTPUT ${outfileName}
-            COMMAND moc ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o ${outfileName}
-            DEPENDS ${mocable})
-        list(APPEND outfiles ${outfile})
     endforeach()
-    add_custom_target(moc_${qt2_wrap_cpp_TARGET} ALL DEPENDS ${outfiles})
+
+    string(TOUPPER ${arg_TARGET} MOCTARGET)
+
+    set(MOC_${MOCTARGET}_SRCS ${MOCCPP} PARENT_SCOPE)
+
+    add_custom_target(moc_${arg_TARGET} ALL DEPENDS ${outFiles} )
 endfunction()

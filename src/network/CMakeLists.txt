@@ -12,12 +12,12 @@ set(NETWORK_SRCS
     qsocketdevice_unix.cpp
     )
 
-add_library(network OBJECT ${NETWORK_SRCS})
-
-target_compile_definitions(network
-    PUBLIC ${QT_DEFINITIONS}
+qt2_wrap_cpp(TARGET network
+    SOURCES
+    qdns.h
+    qftp.h
+    qserversocket.h
+    qsocket.h
 )
 
-# This is really not the most optimal or pretty way to add the include directories
-# But at least we avoid to polute the main cmakelist files
-target_include_directories(network PUBLIC ${PROJECT_SOURCE_DIR}/include)
+add_library(network OBJECT ${NETWORK_SRCS} ${MOC_NETWORK_SRCS})

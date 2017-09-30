@@ -13,16 +13,19 @@ set(DIALOGS_SRCS
     )
 
 qt2_wrap_cpp(TARGET dialogs
-    SOURCES qcolordialog.cpp qfiledialog.cpp
-    VERBOSE)
+    SOURCES
+    qcolordialog.cpp
+    qfiledialog.cpp
+    qcolordialog.h
+    qfiledialog.h
+    qfontdialog.h
+    qmessagebox.h
+    qprogressdialog.h
+    qtabdialog.h
+    qwizard.h
+    qinputdialog.h
+    qprintdialog.h
+    )
 
-add_library(dialogs OBJECT ${DIALOGS_SRCS})
+add_library(dialogs OBJECT ${DIALOGS_SRCS} ${MOC_DIALOGS_SRCS})
 add_dependencies(dialogs moc_dialogs)
-
-target_compile_definitions(dialogs
-    PUBLIC ${QT_DEFINITIONS}
-)
-
-# This is really not the most optimal or pretty way to add the include directories
-# But at least we avoid to polute the main cmakelist files
-target_include_directories(dialogs PUBLIC ${PROJECT_SOURCE_DIR}/include)
