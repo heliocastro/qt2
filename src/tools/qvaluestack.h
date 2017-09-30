@@ -49,12 +49,12 @@ class Q_EXPORT QValueStack : public QValueList<T>
 public:
     QValueStack() {}
    ~QValueStack() {}
-    void  push( const T& d ) { append(d); }
+    void  push( const T& d ) { this->append(d); }
     T pop()
     {
 	T elem( this->last() );
 	if ( !this->isEmpty() )
-	    remove( this->fromLast() );
+	    this->remove( this->fromLast() );
 	return elem;
     }
     T& top() { return this->last(); }

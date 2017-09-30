@@ -91,7 +91,7 @@ bool QSharedMemory::attach ()
     shmId = shmget (key, shmSize, 0);
 
   shmBase = shmat (shmId, 0, 0);
-  if ((int) shmBase == -1 || shmBase == 0)
+  if ( *((int*)(&shmBase)) == -1 || shmBase == 0)
     return FALSE;
   else
     return TRUE;
