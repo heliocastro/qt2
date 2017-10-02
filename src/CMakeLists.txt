@@ -1,3 +1,9 @@
+# This is really not the most optimal or pretty way to add the include directories
+# But at least we avoid to polute the main cmakelist files
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+# --------------------------------------------------------------------------
+
 if(ENABLE_THREAD_SUPPORT)
     list(APPEND QT_DEFINITIONS -DREENTRANT -DQT_THREAD_SUPPORT)
 endif()
@@ -5,10 +11,6 @@ endif()
 if(SYSTEM_ZLIB)
     include_directories(${ZLIB_INCLUDE_DIRS})
 endif()
-
-# This is really not the most optimal or pretty way to add the include directories
-# But at least we avoid to polute the main cmakelist files
-include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_definitions(${QT_DEFINITIONS})
 
@@ -36,7 +38,7 @@ add_library(qt SHARED
     $<TARGET_OBJECTS:canvas>
     $<TARGET_OBJECTS:table>
     $<TARGET_OBJECTS:xml>
-    $<TARGET_OBJECTS:libpng>
+    ${THIRD_PARTY_OBJECTS}
 )
 
 target_link_libraries(qt

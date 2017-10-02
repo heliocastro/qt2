@@ -18,7 +18,4 @@ set(PNG_SRCS
     pngwutil.c
 )
 
-set(THIRD_PARTY "${THIRD_PARTY} $<TARGET_OBJECTS:libpng")
-
 add_library(libpng OBJECT ${PNG_SRCS})
-
