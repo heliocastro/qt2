@@ -7,15 +7,17 @@ project(qt2
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 include(GNUInstallDirs)
-include(Qt2WrapCpp)
+include(Qt2Utils)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--as-needed -Wl,--no-undefined")
 
 option(ENABLE_XFT "Enable support for Anti-Aliased fonts." ON)
 option(ENABLE_SESSION_MANAGEMENT "Support X Session Management, links in -lSM -lICE" ON)
 option(ENABLE_THREAD_SUPPORT "Compile with Threading Support" ON)
+option(ENABLE_OPENGL "Compile OpenGL module" ON)
 option(SYSTEM_ZLIB "Use a zlib from the operating system" ON)
 option(SYSTEM_LIBPNG "Use libpng from the operating system." ON)
 option(SYSTEM_LIBMNG "Use libmng from the operating system." ON)
@@ -35,6 +37,10 @@ if(ENABLE_THREAD_SUPPORT)
     find_package(Threads REQUIRED)
 endif()
 
+if(ENABLE_OPENGL)
+    find_package(OpenGL REQUIRED)
+endif()
+
 if(SYSTEM_ZLIB)
     find_package(ZLIB REQUIRED)
 endif()
@@ -49,8 +55,14 @@ endif()
 
 if(SYSTEM_JPEG)
     find_package(JPEG REQUIRED)
+    pkg_search_module(XMU xmu REQUIRED)
 endif()
 
 find_package(X11 REQUIRED)
 
+# This is really not the most optimal or pretty way to add the include directories
+# But at least we avoid to polute the main cmakelist files
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
 add_subdirectory(src)
+add_subdirectory(tools)
