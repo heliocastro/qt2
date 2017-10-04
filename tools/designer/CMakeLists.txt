@@ -1,0 +1,5 @@
+add_subdirectory(util)
+add_subdirectory(shared)
+add_subdirectory(integration)
+add_subdirectory(uic)
+#add_subdirectory(designer)
