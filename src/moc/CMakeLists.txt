@@ -2,7 +2,7 @@ set(MOC_SRCS mocgen.cpp)
 
 # MOC is a special case, to boostrap moc we need to include
 # external source files
-set(TOOLS_IMPORTES_SRCS
+set(TOOLS_IMPORTED_SRCS
     ${PROJECT_SOURCE_DIR}/src/tools/qbuffer.cpp
     ${PROJECT_SOURCE_DIR}/src/tools/qcollection.cpp
     ${PROJECT_SOURCE_DIR}/src/tools/qcstring.cpp
@@ -23,18 +23,18 @@ set(TOOLS_IMPORTES_SRCS
 )
 
 if(UNIX)
-    list(APPEND TOOLS_IMPORTES_SRCS
+    list(APPEND TOOLS_IMPORTED_SRCS
         ${PROJECT_SOURCE_DIR}/src/tools/qfile_unix.cpp)
 elseif(MSVC)
-    list(APPEND TOOLS_IMPORTES_SRCS
+    list(APPEND TOOLS_IMPORTED_SRCS
         ${PROJECT_SOURCE_DIR}/src/tools/qfile_win.cpp)
 endif()
 
-add_executable(moc ${MOC_SRCS} ${TOOLS_IMPORTES_SRCS})
+add_executable(moc ${MOC_SRCS} ${TOOLS_IMPORTED_SRCS})
 
 set(internalmoc CACHE moc $<TARGET_FILE:moc>)
 
-target_compile_definitions(moc PUBLIC -DQT_NO_CODECS -DQT_LITE_UNICODE)
+target_compile_definitions(moc PRIVATE -DQT_NO_CODECS -DQT_LITE_UNICODE)
 
 # This is really not the most optimal or pretty way to add the include directories
 # But at least we avoid to polute the main cmakelist files

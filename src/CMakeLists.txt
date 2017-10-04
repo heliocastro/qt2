@@ -1,9 +1,3 @@
-# This is really not the most optimal or pretty way to add the include directories
-# But at least we avoid to polute the main cmakelist files
-include_directories(${PROJECT_SOURCE_DIR}/include)
-
-# --------------------------------------------------------------------------
-
 if(ENABLE_THREAD_SUPPORT)
     list(APPEND QT_DEFINITIONS -DREENTRANT -DQT_THREAD_SUPPORT)
 endif()
@@ -55,3 +49,14 @@ set_target_properties(qt PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION ${PROJECT_VERSION_MAJOR}
 )
+
+export(TARGETS qt FILE Qt2Config.cmake)
+
+install(EXPORT Qt2Config DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/qt2/cmake)
+install(TARGETS qt EXPORT Qt2Config
+    ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
+#install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+
