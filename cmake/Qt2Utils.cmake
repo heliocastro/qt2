@@ -4,7 +4,7 @@ function(qt2_wrap_cpp)
     set(options VERBOSE)
     set(oneValueArgs TARGET)
     set(multiValueArgs SOURCES)
-    cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
+    cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     foreach(mocable ${arg_SOURCES})
         string(FIND ${mocable} ".cpp" IS_CPP)
@@ -33,7 +33,7 @@ function(qt2_wrap_cpp)
 
     set(MOC_${MOCTARGET}_SRCS ${MOCCPP} PARENT_SCOPE)
 
-    add_custom_target(moc_${arg_TARGET} ALL DEPENDS ${outFiles} )
+    add_custom_target(moc_${arg_TARGET} ALL DEPENDS ${outFiles})
 endfunction()
 
 function(qt2_wrap_moc mocable_files)
@@ -41,7 +41,7 @@ function(qt2_wrap_moc mocable_files)
     set(oneValueArgs TARGET)
     set(multiValueArgs SOURCES)
 
-    cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
+    cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     foreach(mocable ${arg_SOURCES})
         string(FIND ${mocable} ".cpp" IS_CPP)
@@ -67,6 +67,38 @@ function(qt2_wrap_moc mocable_files)
     endforeach()
 
     set(${mocable_files} ${${mocable_files}} PARENT_SCOPE)
-
     add_custom_target(moc_${mocable_files} ALL DEPENDS ${outFiles})
+endfunction()
+
+function(qt2_wrap_ui ui_target)
+    set(options)
+    set(oneValueArgs)
+    set(multiValueArgs SOURCES)
+
+    cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    foreach(ui_file ${arg_SOURCES})
+        string(REGEX REPLACE ".ui\$" "" basename "${ui_file}")
+        add_custom_command(
+            OUTPUT ${basename}.h
+            COMMAND uic ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file} -o ${basename}.h
+            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file}
+            )
+        add_custom_command(
+            OUTPUT ${basename}.cpp
+            COMMAND uic ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file} -i ${basename}.h -o ${basename}.cpp
+            DEPENDS ${basename}.h
+            )
+        list(APPEND ${ui_target} ${CMAKE_CURRENT_BINARY_DIR}/${basename}.cpp)
+        add_custom_command(
+            OUTPUT moc_${basename}.cpp
+            COMMAND moc ${basename}.h -o moc_${basename}.cpp
+            DEPENDS ${basename}.h
+            )
+        list(APPEND ${ui_target} ${CMAKE_CURRENT_BINARY_DIR}/moc_${basename}.cpp)
+        set(outFiles ${outFiles} ${basename}.h ${basename}.cpp)
+    endforeach()
+
+    set(${ui_target} ${${ui_target}} PARENT_SCOPE)
+    add_custom_target(ui_${ui_target} ALL DEPENDS ${outFiles})
 endfunction()
