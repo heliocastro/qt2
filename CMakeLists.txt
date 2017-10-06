@@ -26,6 +26,8 @@ option(SYSTEM_JPEG "Use jpeglib from the operating system." ON)
 find_package(PkgConfig REQUIRED)
 
 if(ENABLE_XFT)
+    pkg_search_module(XFT REQUIRED xft)
+    pkg_search_module(FONTCONFIG REQUIRED fontconfig)
     find_package(Freetype REQUIRED)
 endif()
 

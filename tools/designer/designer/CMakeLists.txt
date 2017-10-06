@@ -105,19 +105,21 @@ qt2_wrap_ui(DESIGNER_SRCS
     SOURCES ${DESIGNER_UIS}
     )
 
-add_executable(designer ${DESIGNER_SRCS}
+add_executable(designer-qt2 ${DESIGNER_SRCS}
     $<TARGET_OBJECTS:qutil>
     $<TARGET_OBJECTS:shared>
     $<TARGET_OBJECTS:integration>
     )
 
-target_link_libraries(designer
-    qt
-    ${ZLIB_LIBRARIES}
+target_link_libraries(designer-qt2
+    qt2
+    ZLIB::ZLIB
     )
 
-target_compile_definitions(designer PRIVATE DESIGNER)
-target_include_directories(designer PRIVATE
+target_compile_definitions(designer-qt2 PRIVATE DESIGNER)
+target_include_directories(designer-qt2 PRIVATE
     ../util
     ../shared
     )
+
+install(TARGETS designer-qt2 RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

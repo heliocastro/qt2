@@ -92,6 +92,97 @@ set(KERNEL_SRCS
     qwmatrix.cpp
 )
 
+set(KERNEL_HEADERS
+    q1xcompatibility.h
+    qabstractlayout.h
+    qaccel.h
+    qapplication.h
+    qasyncimageio.h
+    qasyncio.h
+    qbitmap.h
+    qbrush.h
+    qclipboard.h
+    qcolor.h
+    qconnection.h
+    qcursor.h
+    qdialog.h
+    qdragobject.h
+    qdrawutil.h
+    qdropsite.h
+    qevent.h
+    qfocusdata.h
+    qfontdatabase.h
+    qfont.h
+    qfontinfo.h
+    qfontmetrics.h
+    qgif.h
+    qguardedptr.h
+    qiconset.h
+    qimage.h
+    qjpegio.h
+    qkeycode.h
+    qlayout.h
+    qlocalfs.h
+    qmetaobject.h
+    qmime.h
+    qmngio.h
+    qmovie.h
+    qnamespace.h
+    qnetworkprotocol.h
+    qobjectdefs.h
+    qobjectdict.h
+    qobject.h
+    qobjectlist.h
+    qpaintdevicedefs.h
+    qpaintdevice.h
+    qpaintdevicemetrics.h
+    qpainter.h
+    qpalette.h
+    qpen.h
+    qpicture.h
+    qpixmapcache.h
+    qpixmap.h
+    qpngio.h
+    qpointarray.h
+    qpoint.h
+    qpolygonscanner.h
+    qprinter.h
+    qrect.h
+    qregion.h
+    qsemimodal.h
+    qsession.h
+    qsessionmanager.h
+    qsharedmemory.h
+    qsignal.h
+    qsignalmapper.h
+    qsignalslotimp.h
+    qsimplerichtext.h
+    qsizegrip.h
+    qsize.h
+    qsizepolicy.h
+    qsocketnotifier.h
+    qsound.h
+    qstyle.h
+    qstylesheet.h
+    qt.h
+    qthread.h
+    qtimer.h
+    qtranslator.h
+    qt_x11.h
+    qurl.h
+    qurlinfo.h
+    qurloperator.h
+    qvariant.h
+    qvfbhdr.h
+    qwidget.h
+    qwidgetintdict.h
+    qwidgetlist.h
+    qwindowdefs.h
+    qwindow.h
+    qwmatrix.h
+)
+install(FILES ${KERNEL_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
 qt2_wrap_cpp(
     TARGET kernel
     SOURCES

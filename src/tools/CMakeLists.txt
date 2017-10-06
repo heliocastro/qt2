@@ -42,4 +42,70 @@ elseif(MSVC)
     list(APPEND TOOLS_SRCS qfile_win.cpp)
 endif()
 
+set(TOOLS_HEADERS
+    qarray.h
+    qasciicache.h
+    qasciidict.h
+    qbig5codec.h
+    qbitarray.h
+    qbuffer.h
+    qcache.h
+    qcollection.h
+    qconfig-dist.h
+    qconfig.h
+    qconfig-large.h
+    qconfig-medium.h
+    qconfig-minimal.h
+    qconfig-small.h
+    qcstring.h
+    qdatastream.h
+    qdatetime.h
+    qdict.h
+    qdir.h
+    qeucjpcodec.h
+    qeuckrcodec.h
+    qfeatures.h
+    qfile.h
+    qfileinfo.h
+    qgarray.h
+    qgbkcodec.h
+    qgcache.h
+    qgdict.h
+    qgeneric.h
+    qglist.h
+    qglobal.h
+    qgvector.h
+    qintcache.h
+    qintdict.h
+    qiodevice.h
+    qjiscodec.h
+    qjpunicode.h
+    qkoi8codec.h
+    qlist.h
+    qmap.h
+    qmodules.h
+    qptrdict.h
+    qqueue.h
+    qregexp.h
+    qrtlcodec.h
+    qshared.h
+    qsjiscodec.h
+    qsmartptr.h
+    qsortedlist.h
+    qstack.h
+    qstring.h
+    qstringlist.h
+    qstrlist.h
+    qstrvec.h
+    qtextcodec.h
+    qtextstream.h
+    qtl.h
+    qtsciicodec.h
+    qutfcodec.h
+    qvaluelist.h
+    qvaluestack.h
+    qvector.h
+)
+install(FILES ${TOOLS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
 add_library(tools OBJECT ${TOOLS_SRCS})

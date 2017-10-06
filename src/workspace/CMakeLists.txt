@@ -4,6 +4,11 @@ set(WORKSPACE_SRCS
     qworkspace.cpp
     )
 
+set(WORKSPACE_HEADERS
+    qworkspace.h
+)
+install(FILES ${WORKSPACE_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
 qt2_wrap_cpp(TARGET workspace
     SOURCES
     qworkspace.cpp

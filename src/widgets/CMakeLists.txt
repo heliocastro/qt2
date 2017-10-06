@@ -119,6 +119,66 @@ qt2_wrap_cpp(TARGET widgets
     qaction.h
 )
 
+set(WIDGETS_HEADERS
+    qaction.h
+    qbuttongroup.h
+    qbutton.h
+    qcdestyle.h
+    qcheckbox.h
+    qcombobox.h
+    qcommonstyle.h
+    qdial.h
+    qframe.h
+    qgrid.h
+    qgroupbox.h
+    qhbox.h
+    qhbuttongroup.h
+    qheader.h
+    qhgroupbox.h
+    qinterlacestyle.h
+    qlabel.h
+    qlcdnumber.h
+    qlineedit.h
+    qlistbox.h
+    qlistview.h
+    qmainwindow.h
+    qmenubar.h
+    qmenudata.h
+    qmotifplusstyle.h
+    qmotifstyle.h
+    qmultilineedit.h
+    qplatinumstyle.h
+    qpopupmenu.h
+    qprogressbar.h
+    qpushbutton.h
+    qradiobutton.h
+    qrangecontrol.h
+    qscrollbar.h
+    qscrollview.h
+    qsgistyle.h
+    qslider.h
+    qspinbox.h
+    qsplitter.h
+    qstatusbar.h
+    qtabbar.h
+    qtableview.h
+    qtabwidget.h
+    qtextbrowser.h
+    qtextview.h
+    qtoolbar.h
+    qtoolbutton.h
+    qtooltip.h
+    qvalidator.h
+    qvbox.h
+    qvbuttongroup.h
+    qvgroupbox.h
+    qwhatsthis.h
+    qwidgetstack.h
+    qwindowsstyle.h
+)
+install(FILES ${WIDGETS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
+
 add_library(widgets OBJECT ${WIDGETS_SRCS} ${MOC_WIDGETS_SRCS})
 add_dependencies(widgets moc_widgets)
 

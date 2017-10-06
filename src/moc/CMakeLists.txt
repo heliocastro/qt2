@@ -30,15 +30,17 @@ elseif(MSVC)
         ${PROJECT_SOURCE_DIR}/src/tools/qfile_win.cpp)
 endif()
 
-add_executable(moc ${MOC_SRCS} ${TOOLS_IMPORTED_SRCS})
+add_executable(moc-qt2 ${MOC_SRCS} ${TOOLS_IMPORTED_SRCS})
 
-set(internalmoc CACHE moc $<TARGET_FILE:moc>)
+set(internalmoc CACHE moc-qt2 $<TARGET_FILE:moc>)
 
-target_compile_definitions(moc PRIVATE -DQT_NO_CODECS -DQT_LITE_UNICODE)
+target_compile_definitions(moc-qt2 PRIVATE -DQT_NO_CODECS -DQT_LITE_UNICODE)
 
 # This is really not the most optimal or pretty way to add the include directories
 # But at least we avoid to polute the main cmakelist files
-target_include_directories(moc PUBLIC
+target_include_directories(moc-qt2 PUBLIC
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/src/tools
 )
+
+install(TARGETS moc-qt2 RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

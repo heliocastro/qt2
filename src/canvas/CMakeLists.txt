@@ -10,5 +10,10 @@ qt2_wrap_cpp(TARGET canvas
     qcanvas.h
 )
 
+set(CANVAS_HEADERS
+    qcanvas.h
+)
+install(FILES ${CANVAS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
 add_library(canvas OBJECT ${CANVAS_SRCS} ${MOC_CANVAS_SRCS})
 add_dependencies(canvas moc_canvas)

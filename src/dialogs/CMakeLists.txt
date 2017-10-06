@@ -27,5 +27,18 @@ qt2_wrap_cpp(TARGET dialogs
     qprintdialog.h
     )
 
+set(DIALOGS_HEADERS
+    qcolordialog.h
+    qfiledialog.h
+    qfontdialog.h
+    qinputdialog.h
+    qmessagebox.h
+    qprintdialog.h
+    qprogressdialog.h
+    qtabdialog.h
+    qwizard.h
+)
+install(FILES ${DIALOGS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
 add_library(dialogs OBJECT ${DIALOGS_SRCS} ${MOC_DIALOGS_SRCS})
 add_dependencies(dialogs moc_dialogs)

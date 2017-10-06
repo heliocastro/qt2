@@ -1,0 +1,54 @@
+set(COMPAT_HEADERS
+    qapp.h
+    qbitarry.h
+    qbttngrp.h
+    qchkbox.h
+    qclipbrd.h
+    qcollect.h
+    qcombo.h
+    qconnect.h
+    qdatetm.h
+    qdrawutl.h
+    qdstream.h
+    qfiledef.h
+    qfiledlg.h
+    qfileinf.h
+    qfontdta.h
+    qfontinf.h
+    qfontmet.h
+    qgrpbox.h
+    qintcach.h
+    qiodev.h
+    qlcdnum.h
+    qlined.h
+    qmenudta.h
+    qmetaobj.h
+    qmlined.h
+    qmsgbox.h
+    qmultilinedit.h
+    qobjcoll.h
+    qobjdefs.h
+    qpaintdc.h
+    qpaintd.h
+    qpdevmet.h
+    qpmcache.h
+    qpntarry.h
+    qpopmenu.h
+    qprndlg.h
+    qprogbar.h
+    qprogdlg.h
+    qpsprn.h
+    qpushbt.h
+    qradiobt.h
+    qrangect.h
+    qscrbar.h
+    qsocknot.h
+    qtabdlg.h
+    qtablevw.h
+    qtstream.h
+    qwidcoll.h
+    qwindefs.h
+)
+install(FILES ${COMPAT_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
+

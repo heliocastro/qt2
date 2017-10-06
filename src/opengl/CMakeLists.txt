@@ -5,6 +5,11 @@ set(OPENGL_SRCS
     qgl_x11.cpp
 )
 
+set(OPENGL_HEADERS
+    qgl.h
+)
+install(FILES ${OPENGL_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
 qt2_wrap_cpp(TARGET opengl
     SOURCES
     qgl.h

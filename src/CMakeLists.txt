@@ -1,15 +1,14 @@
+list(APPEND QT_DEFINITIONS -DQT_BUILTIN_GIF_READER=1 -DQT_XFT)
+
 if(ENABLE_THREAD_SUPPORT)
     list(APPEND QT_DEFINITIONS -DREENTRANT -DQT_THREAD_SUPPORT)
-endif()
-
-if(SYSTEM_ZLIB)
-    include_directories(${ZLIB_INCLUDE_DIRS})
 endif()
 
 add_definitions(${QT_DEFINITIONS})
 
 add_subdirectory(3rdparty)
 add_subdirectory(moc)
+add_subdirectory(compat)
 add_subdirectory(tools)
 add_subdirectory(kernel)
 add_subdirectory(widgets)
@@ -21,7 +20,7 @@ add_subdirectory(canvas)
 add_subdirectory(table)
 add_subdirectory(xml)
 
-add_library(qt SHARED
+add_library(qt2 SHARED
     $<TARGET_OBJECTS:tools>
     $<TARGET_OBJECTS:kernel>
     $<TARGET_OBJECTS:widgets>
@@ -35,28 +34,67 @@ add_library(qt SHARED
     ${THIRD_PARTY_OBJECTS}
 )
 
-target_link_libraries(qt
-    ${ZLIB_LIBRARIES}
-    ${PNG_LIBRARIES}
+target_link_libraries(qt2
     ${FREETYPE_LIBRARIES}
+    ${FONTCONFIG_LIBRARIES}
+    ${XFT_LIBRARIES}
     ${X11_LIBRARIES}
     ${MNG_LIBRARIES}
     ${JPEG_LIBRARIES}
+    ZLIB::ZLIB
     Threads::Threads
 )
+if(NOT SYSTEM_PNG)
+    target_link_libraries(qt2 PNG::PNG)
+endif()
 
-set_target_properties(qt PROPERTIES
+set_target_properties(qt2 PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION ${PROJECT_VERSION_MAJOR}
+    )
+
+target_include_directories(qt2 PUBLIC
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/qt2>
+    ${FREETYPE_INCLUDE_DIRS}
+    ${FONTCONFIG_INCLUDE_DIRS}
+    ${XFT_INCLUDE_DIRS}
+    ${X11_INCLUDE_DIRS}
+    ${MNG_INCLUDE_DIRS}
+    ${JPEG_INCLUDE_DIRS}
+    )
+
+install(TARGETS qt2 EXPORT Qt2Targets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-export(TARGETS qt FILE Qt2Config.cmake)
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/Qt2/Qt2ConfigVersion.cmake"
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
 
-install(EXPORT Qt2Config DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/qt2/cmake)
-install(TARGETS qt EXPORT Qt2Config
-    ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
-#install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+export(EXPORT Qt2Targets
+    FILE "${CMAKE_CURRENT_BINARY_DIR}/Qt2/Qt2Targets.cmake"
+    NAMESPACE qt2::
+)
 
+configure_file(${PROJECT_SOURCE_DIR}/cmake/Qt2Config.cmake
+    "${CMAKE_CURRENT_BINARY_DIR}/Qt2/Qt2Config.cmake"
+    COPYONLY
+)
+
+install(EXPORT Qt2Targets
+    FILE Qt2Targets.cmake
+    NAMESPACE qt2::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/qt2
+    )
+
+install(FILES
+    ${PROJECT_SOURCE_DIR}/cmake/Qt2Config.cmake
+    "${CMAKE_CURRENT_BINARY_DIR}/Qt2/Qt2ConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Qt2
+    COMPONENT Devel
+)
 

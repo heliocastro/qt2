@@ -13,7 +13,7 @@ function(qt2_wrap_cpp)
         if("${IS_CPP}" LESS "0")
             add_custom_command(
                 OUTPUT moc_${outfileName}.cpp
-                COMMAND moc ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o moc_${outfileName}.cpp
+                COMMAND moc-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o moc_${outfileName}.cpp
                 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${outfileName}.h
             )
             # Check if header really generates output
@@ -22,7 +22,7 @@ function(qt2_wrap_cpp)
         else()
             add_custom_command(
                 OUTPUT ${outfileName}.moc
-                COMMAND moc ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o ${outfileName}.moc
+                COMMAND moc-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o ${outfileName}.moc
                 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${mocable}
             )
             set(outFiles ${outFiles} ${outfileName}.moc)
@@ -50,7 +50,7 @@ function(qt2_wrap_moc mocable_files)
         if("${IS_CPP}" LESS "0")
             add_custom_command(
                 OUTPUT moc_${outfileName}.cpp
-                COMMAND moc ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o moc_${outfileName}.cpp
+                COMMAND moc-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o moc_${outfileName}.cpp
                 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${outfileName}.h
             )
             # Check if header really generates output
@@ -59,7 +59,7 @@ function(qt2_wrap_moc mocable_files)
         else()
             add_custom_command(
                 OUTPUT ${outfileName}.moc
-                COMMAND moc ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o ${outfileName}.moc
+                COMMAND moc-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o ${outfileName}.moc
                 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${mocable}
             )
             set(outFiles ${outFiles} ${outfileName}.moc)
@@ -81,18 +81,18 @@ function(qt2_wrap_ui ui_target)
         string(REGEX REPLACE ".ui\$" "" basename "${ui_file}")
         add_custom_command(
             OUTPUT ${basename}.h
-            COMMAND uic ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file} -o ${basename}.h
+            COMMAND uic-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file} -o ${basename}.h
             DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file}
             )
         add_custom_command(
             OUTPUT ${basename}.cpp
-            COMMAND uic ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file} -i ${basename}.h -o ${basename}.cpp
+            COMMAND uic-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file} -i ${basename}.h -o ${basename}.cpp
             DEPENDS ${basename}.h
             )
         list(APPEND ${ui_target} ${CMAKE_CURRENT_BINARY_DIR}/${basename}.cpp)
         add_custom_command(
             OUTPUT moc_${basename}.cpp
-            COMMAND moc ${basename}.h -o moc_${basename}.cpp
+            COMMAND moc-qt2 ${basename}.h -o moc_${basename}.cpp
             DEPENDS ${basename}.h
             )
         list(APPEND ${ui_target} ${CMAKE_CURRENT_BINARY_DIR}/moc_${basename}.cpp)
