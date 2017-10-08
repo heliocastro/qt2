@@ -22,6 +22,8 @@ option(SYSTEM_ZLIB "Use a zlib from the operating system" ON)
 option(SYSTEM_LIBPNG "Use libpng from the operating system." ON)
 option(SYSTEM_LIBMNG "Use libmng from the operating system." ON)
 option(SYSTEM_JPEG "Use jpeglib from the operating system." ON)
+option(BUILD_TUTORIAL "Build tutorials." ON)
+option(BUILD_EXAMPLES "Build examples." ON)
 
 find_package(PkgConfig REQUIRED)
 
@@ -69,3 +71,11 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(src)
 add_subdirectory(tools)
+
+if(BUILD_TUTORIAL)
+    add_subdirectory(tutorial)
+endif()
+
+if(BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
