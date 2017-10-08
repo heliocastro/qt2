@@ -112,7 +112,7 @@ add_executable(designer-qt2 ${DESIGNER_SRCS}
     )
 
 target_link_libraries(designer-qt2
-    qt2
+    Qt2
     ZLIB::ZLIB
     )
 

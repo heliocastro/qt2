@@ -23,7 +23,7 @@ if(ENABLE_OPENGL)
     add_subdirectory(opengl)
 endif()
 
-add_library(qt2 SHARED
+add_library(Qt2 SHARED
     $<TARGET_OBJECTS:tools>
     $<TARGET_OBJECTS:kernel>
     $<TARGET_OBJECTS:widgets>
@@ -38,7 +38,7 @@ add_library(qt2 SHARED
     ${THIRD_PARTY_OBJECTS}
 )
 
-target_link_libraries(qt2
+target_link_libraries(Qt2
     ${FREETYPE_LIBRARIES}
     ${FONTCONFIG_LIBRARIES}
     ${XFT_LIBRARIES}
@@ -52,12 +52,13 @@ target_link_libraries(qt2
     $<$<BOOL:ENABLE_OPENGL>:GLUT::GLUT>
 )
 
-set_target_properties(qt2 PROPERTIES
+set_target_properties(Qt2 PROPERTIES
+    OUTPUT_NAME qt2
     VERSION ${PROJECT_VERSION}
     SOVERSION ${PROJECT_VERSION_MAJOR}
     )
 
-target_include_directories(qt2 PUBLIC
+target_include_directories(Qt2 PUBLIC
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/qt2>
     ${FREETYPE_INCLUDE_DIRS}
     ${FONTCONFIG_INCLUDE_DIRS}
@@ -67,7 +68,7 @@ target_include_directories(qt2 PUBLIC
     ${JPEG_INCLUDE_DIRS}
     )
 
-install(TARGETS qt2 EXPORT Qt2Targets
+install(TARGETS Qt2 EXPORT Qt2Targets
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
