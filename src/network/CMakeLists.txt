@@ -22,12 +22,7 @@ set(NETWORK_HEADERS
 )
 install(FILES ${NETWORK_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
-qt2_wrap_cpp(TARGET network
-    SOURCES
-    qdns.h
-    qftp.h
-    qserversocket.h
-    qsocket.h
-)
+qt2_wrap_moc(NETWORK_SRCS
+    SOURCES ${NETWORK_HEADERS})
 
 add_library(network OBJECT ${NETWORK_SRCS} ${MOC_NETWORK_SRCS})

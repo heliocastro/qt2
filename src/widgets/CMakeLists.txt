@@ -59,66 +59,6 @@ set(WIDGETS_SRCS
     qwindowsstyle.cpp
     )
 
-qt2_wrap_cpp(TARGET widgets
-    SOURCES
-    qeffects.cpp
-    qmainwindow.cpp
-    qtoolbar.cpp
-    qtooltip.cpp
-    qwhatsthis.cpp
-    qbuttongroup.h
-    qbutton.h
-    qcheckbox.h
-    qcdestyle.h
-    qcombobox.h
-    qcommonstyle.h
-    qdial.h
-    qframe.h
-    qgrid.h
-    qgroupbox.h
-    qhbuttongroup.h
-    qheader.h
-    qhgroupbox.h
-    qhbox.h
-    qlabel.h
-    qlcdnumber.h
-    qlineedit.h
-    qlistbox.h
-    qlistview.h
-    qmainwindow.h
-    qmenubar.h
-    qmotifstyle.h
-    qmotifplusstyle.h
-    qmultilineedit.h
-    qplatinumstyle.h
-    qpopupmenu.h
-    qprogressbar.h
-    qpushbutton.h
-    qradiobutton.h
-    qscrollbar.h
-    qscrollview.h
-    qsgistyle.h
-    qslider.h
-    qspinbox.h
-    qsplitter.h
-    qstatusbar.h
-    qtabbar.h
-    qtabwidget.h
-    qtableview.h
-    qtextbrowser.h
-    qtextview.h
-    qtoolbar.h
-    qtoolbutton.h
-    qtooltip.h
-    qvalidator.h
-    qvbox.h
-    qvbuttongroup.h
-    qvgroupbox.h
-    qwidgetstack.h
-    qwindowsstyle.h
-    qaction.h
-)
-
 set(WIDGETS_HEADERS
     qaction.h
     qbuttongroup.h
@@ -176,9 +116,20 @@ set(WIDGETS_HEADERS
     qwidgetstack.h
     qwindowsstyle.h
 )
-install(FILES ${WIDGETS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
+qt2_wrap_cpp(TARGET widgets
+    SOURCES
+    qeffects.cpp
+    qmainwindow.cpp
+    qtoolbar.cpp
+    qtooltip.cpp
+    qwhatsthis.cpp
+)
+
+qt2_wrap_moc(WIDGETS_SRCS
+    SOURCES ${WIDGETS_HEADERS})
 
 add_library(widgets OBJECT ${WIDGETS_SRCS} ${MOC_WIDGETS_SRCS})
 add_dependencies(widgets moc_widgets)
 
+install(FILES ${WIDGETS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)

@@ -7,8 +7,10 @@ set(CANVAS_SRCS
 qt2_wrap_cpp(TARGET canvas
     SOURCES
     qcanvas.cpp
-    qcanvas.h
 )
+
+qt2_wrap_moc(CANVAS_SRCS
+    SOURCES qcanvas.h)
 
 set(CANVAS_HEADERS
     qcanvas.h

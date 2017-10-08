@@ -189,6 +189,10 @@ qt2_wrap_cpp(
     qapplication_x11.cpp
     qmovie.cpp
     qthread_unix.cpp
+    )
+
+qt2_wrap_moc(KERNEL_SRCS
+    SOURCES
     qabstractlayout.h
     qaccel.h
     qapplication.h
@@ -211,8 +215,8 @@ qt2_wrap_cpp(
     qtimer.h
     qlocalfs.h
     qurloperator.h
-    qwidget.h
-    )
+    qwidget.h)
+
 
 add_library(kernel OBJECT ${KERNEL_SRCS} ${MOC_KERNEL_SRCS})
 add_dependencies(kernel moc_kernel)

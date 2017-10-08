@@ -12,20 +12,6 @@ set(DIALOGS_SRCS
     qwizard.cpp
     )
 
-qt2_wrap_cpp(TARGET dialogs
-    SOURCES
-    qcolordialog.cpp
-    qfiledialog.cpp
-    qcolordialog.h
-    qfiledialog.h
-    qfontdialog.h
-    qmessagebox.h
-    qprogressdialog.h
-    qtabdialog.h
-    qwizard.h
-    qinputdialog.h
-    qprintdialog.h
-    )
 
 set(DIALOGS_HEADERS
     qcolordialog.h
@@ -38,6 +24,16 @@ set(DIALOGS_HEADERS
     qtabdialog.h
     qwizard.h
 )
+
+qt2_wrap_cpp(TARGET dialogs
+    SOURCES
+    qcolordialog.cpp
+    qfiledialog.cpp
+    )
+
+qt2_wrap_moc(DIALOGS_SRCS
+    SOURCES ${DIALOGS_HEADERS})
+
 install(FILES ${DIALOGS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
 add_library(dialogs OBJECT ${DIALOGS_SRCS} ${MOC_DIALOGS_SRCS})

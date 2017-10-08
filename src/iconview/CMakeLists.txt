@@ -5,10 +5,10 @@ set(ICONVIEW_SRCS
     )
 
 qt2_wrap_cpp(TARGET iconview
-    SOURCES
-    qiconview.cpp
-    qiconview.h
-    VERBOSE)
+    SOURCES qiconview.cpp)
+
+qt2_wrap_moc(ICONVIEW_SRCS
+    SOURCES qiconview.h)
 
 set(ICONVIEW_HEADERS
     qiconview.h

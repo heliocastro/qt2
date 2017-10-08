@@ -19,6 +19,9 @@ add_subdirectory(network)
 add_subdirectory(canvas)
 add_subdirectory(table)
 add_subdirectory(xml)
+if(ENABLE_OPENGL)
+    add_subdirectory(opengl)
+endif()
 
 add_library(qt2 SHARED
     $<TARGET_OBJECTS:tools>
@@ -31,6 +34,7 @@ add_library(qt2 SHARED
     $<TARGET_OBJECTS:canvas>
     $<TARGET_OBJECTS:table>
     $<TARGET_OBJECTS:xml>
+    $<TARGET_OBJECTS:opengl>
     ${THIRD_PARTY_OBJECTS}
 )
 
@@ -41,12 +45,12 @@ target_link_libraries(qt2
     ${X11_LIBRARIES}
     ${MNG_LIBRARIES}
     ${JPEG_LIBRARIES}
-    ZLIB::ZLIB
     Threads::Threads
+    $<$<BOOL:SYSTEM_PNG>:PNG::PNG>
+    $<$<BOOL:SYSTEM_ZLIB>:ZLIB::ZLIB>
+    $<$<BOOL:ENABLE_OPENGL>:OpenGL::GL>
+    $<$<BOOL:ENABLE_OPENGL>:GLUT::GLUT>
 )
-if(NOT SYSTEM_PNG)
-    target_link_libraries(qt2 PNG::PNG)
-endif()
 
 set_target_properties(qt2 PROPERTIES
     VERSION ${PROJECT_VERSION}
@@ -77,7 +81,7 @@ write_basic_package_version_file(
 
 export(EXPORT Qt2Targets
     FILE "${CMAKE_CURRENT_BINARY_DIR}/Qt2/Qt2Targets.cmake"
-    NAMESPACE qt2::
+    NAMESPACE Qt::
 )
 
 configure_file(${PROJECT_SOURCE_DIR}/cmake/Qt2Config.cmake
@@ -87,7 +91,7 @@ configure_file(${PROJECT_SOURCE_DIR}/cmake/Qt2Config.cmake
 
 install(EXPORT Qt2Targets
     FILE Qt2Targets.cmake
-    NAMESPACE qt2::
+    NAMESPACE Qt::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/qt2
     )
 
