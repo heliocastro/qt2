@@ -71,7 +71,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(src)
 add_subdirectory(tools)
-
+add_subdirectory(doc)
 if(BUILD_TUTORIAL)
     add_subdirectory(tutorial)
 endif()
