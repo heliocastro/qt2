@@ -13,7 +13,7 @@ function(qt2_wrap_cpp)
             OUTPUT ${outfileName}.moc
             COMMAND moc-qt2 ${realfile} -o ${outfileName}.moc
         )
-        set(outFiles ${outFiles} ${outfileName}.moc)
+        list(APPEND ${outFiles} ${outfileName}.moc)
     endforeach()
 
     string(TOUPPER ${arg_TARGET} MOCTARGET)
@@ -28,25 +28,15 @@ function(qt2_wrap_moc mocable_files)
     cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     foreach(mocable ${arg_SOURCES})
-        string(FIND ${mocable} ".cpp" IS_CPP)
         get_filename_component(realfile ${mocable} ABSOLUTE)
         get_filename_component(outfileName ${mocable} NAME_WE)
-        # Only generates moccpp if header file exists
-        if("${IS_CPP}" LESS "0")
-            add_custom_command(
-                OUTPUT moc_${outfileName}.cpp
-                COMMAND moc-qt2 ${realfile} -o moc_${outfileName}.cpp
-            )
-            # Check if header really generates output
-            set(outFiles ${outFiles} moc_${outfileName}.cpp)
-            list(APPEND ${mocable_files} ${CMAKE_CURRENT_BINARY_DIR}/moc_${outfileName}.cpp)
-        else()
-            add_custom_command(
-                OUTPUT ${outfileName}.moc
-                COMMAND moc-qt2 ${realfile} -o ${outfileName}.moc
-            )
-            set(outFiles ${outFiles} ${outfileName}.moc)
-        endif()
+        add_custom_command(
+            OUTPUT moc_${outfileName}.cpp
+            COMMAND moc-qt2 ${realfile} -o moc_${outfileName}.cpp
+        )
+        # Check if header really generates output
+        list(APPEND ${outFiles} moc_${outfileName}.cpp)
+        list(APPEND ${mocable_files} ${CMAKE_CURRENT_BINARY_DIR}/moc_${outfileName}.cpp)
     endforeach()
 
     set(${mocable_files} ${${mocable_files}} PARENT_SCOPE)

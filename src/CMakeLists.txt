@@ -43,11 +43,11 @@ target_link_libraries(Qt2
     ${X11_LIBRARIES}
     ${MNG_LIBRARIES}
     ${JPEG_LIBRARIES}
+    GLUT::GLUT
+    OpenGL::GL
+    $<$<BOOL:${SYSTEM_LIBPNG}>:PNG::PNG>
     Threads::Threads
-    $<$<BOOL:SYSTEM_PNG>:PNG::PNG>
-    $<$<BOOL:SYSTEM_ZLIB>:ZLIB::ZLIB>
-    $<$<BOOL:ENABLE_OPENGL>:OpenGL::GL>
-    $<$<BOOL:ENABLE_OPENGL>:GLUT::GLUT>
+    ZLIB::ZLIB
 )
 
 set_target_properties(Qt2 PROPERTIES
@@ -96,6 +96,7 @@ install(EXPORT Qt2Targets
 
 install(FILES
     ${PROJECT_SOURCE_DIR}/cmake/Qt2Config.cmake
+    ${PROJECT_SOURCE_DIR}/cmake/Qt2Utils.cmake
     "${CMAKE_CURRENT_BINARY_DIR}/Qt2/Qt2ConfigVersion.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Qt2
     COMPONENT Devel
