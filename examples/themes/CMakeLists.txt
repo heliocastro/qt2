@@ -22,7 +22,7 @@ set(THEMES_HEADERS
     ../rangecontrols/rangecontrols.h
     ../richtext/richtext.h
     wood.h
-    methal.h
+    metal.h
     )
 
 qt2_wrap_moc(THEMES_SRCS SOURCES ${THEMES_HEADERS})

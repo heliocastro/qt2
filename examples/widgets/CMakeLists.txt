@@ -3,7 +3,7 @@ set(WIDGETS_EXAMPLE_SRCS
     )
 
 set(WIDGETS_HEADERS
-    ex_widgets.h ../aclock/aclock.h ../dclock/dclock.h
+    widgets.h ../aclock/aclock.h ../dclock/dclock.h
     )
 
 qt2_wrap_moc(WIDGETS_EXAMPLE_SRCS SOURCES ${WIDGETS_HEADERS})

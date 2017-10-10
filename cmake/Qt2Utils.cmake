@@ -7,11 +7,11 @@ function(qt2_wrap_cpp)
     cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     foreach(mocable ${arg_SOURCES})
-        string(REGEX REPLACE ".cpp|.h\$" ""  outfileName "${mocable}")
+        get_filename_component(realfile ${mocable} ABSOLUTE)
+        get_filename_component(outfileName ${mocable} NAME_WE)
         add_custom_command(
             OUTPUT ${outfileName}.moc
-            COMMAND moc-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o ${outfileName}.moc
-            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${mocable}
+            COMMAND moc-qt2 ${realfile} -o ${outfileName}.moc
         )
         set(outFiles ${outFiles} ${outfileName}.moc)
     endforeach()
@@ -29,13 +29,13 @@ function(qt2_wrap_moc mocable_files)
 
     foreach(mocable ${arg_SOURCES})
         string(FIND ${mocable} ".cpp" IS_CPP)
-        string(REGEX REPLACE ".cpp|.h\$" ""  outfileName "${mocable}")
+        get_filename_component(realfile ${mocable} ABSOLUTE)
+        get_filename_component(outfileName ${mocable} NAME_WE)
         # Only generates moccpp if header file exists
         if("${IS_CPP}" LESS "0")
             add_custom_command(
                 OUTPUT moc_${outfileName}.cpp
-                COMMAND moc-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o moc_${outfileName}.cpp
-                DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${outfileName}.h
+                COMMAND moc-qt2 ${realfile} -o moc_${outfileName}.cpp
             )
             # Check if header really generates output
             set(outFiles ${outFiles} moc_${outfileName}.cpp)
@@ -43,8 +43,7 @@ function(qt2_wrap_moc mocable_files)
         else()
             add_custom_command(
                 OUTPUT ${outfileName}.moc
-                COMMAND moc-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${mocable} -o ${outfileName}.moc
-                DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${mocable}
+                COMMAND moc-qt2 ${realfile} -o ${outfileName}.moc
             )
             set(outFiles ${outFiles} ${outfileName}.moc)
         endif()
@@ -62,15 +61,15 @@ function(qt2_wrap_ui ui_target)
     cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     foreach(ui_file ${arg_SOURCES})
-        string(REGEX REPLACE ".ui\$" "" basename "${ui_file}")
+        get_filename_component(realfile ${ui_file} ABSOLUTE)
+        get_filename_component(basename ${ui_file} NAME_WE)
         add_custom_command(
             OUTPUT ${basename}.h
-            COMMAND uic-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file} -o ${basename}.h
-            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file}
+            COMMAND uic-qt2 ${realfile} -o ${basename}.h
             )
         add_custom_command(
             OUTPUT ${basename}.cpp
-            COMMAND uic-qt2 ${CMAKE_CURRENT_SOURCE_DIR}/${ui_file} -i ${basename}.h -o ${basename}.cpp
+            COMMAND uic-qt2 ${realfile} -i ${basename}.h -o ${basename}.cpp
             DEPENDS ${basename}.h
             )
         list(APPEND ${ui_target} ${CMAKE_CURRENT_BINARY_DIR}/${basename}.cpp)

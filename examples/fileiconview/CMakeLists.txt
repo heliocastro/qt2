@@ -8,6 +8,7 @@ set(FILEICONVIEW_SRCS
 set(FILEICONVIEW_HEADERS
     mainwindow.h
     qfileiconview.h
+	../dirview/dirview.h
     )
 
 qt2_wrap_moc(FILEICONVIEW_SRCS SOURCES ${FILEICONVIEW_HEADERS})
