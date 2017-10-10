@@ -4,8 +4,6 @@ if(ENABLE_THREAD_SUPPORT)
     list(APPEND QT_DEFINITIONS -DREENTRANT -DQT_THREAD_SUPPORT)
 endif()
 
-add_definitions(${QT_DEFINITIONS})
-
 add_subdirectory(3rdparty)
 add_subdirectory(moc)
 add_subdirectory(compat)

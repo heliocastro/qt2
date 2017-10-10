@@ -131,5 +131,6 @@ qt2_wrap_moc(WIDGETS_SRCS
 
 add_library(widgets OBJECT ${WIDGETS_SRCS} ${MOC_WIDGETS_SRCS})
 add_dependencies(widgets moc_widgets)
+target_compile_definitions(widgets PRIVATE ${QT_DEFINITIONS})
 
 install(FILES ${WIDGETS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)

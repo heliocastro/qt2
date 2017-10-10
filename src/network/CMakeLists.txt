@@ -26,3 +26,4 @@ qt2_wrap_moc(NETWORK_SRCS
     SOURCES ${NETWORK_HEADERS})
 
 add_library(network OBJECT ${NETWORK_SRCS} ${MOC_NETWORK_SRCS})
+target_compile_definitions(network PRIVATE ${QT_DEFINITIONS})

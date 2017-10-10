@@ -18,3 +18,4 @@ qt2_wrap_moc(WORKSPACE_SRCS
     SOURCES qworkspace.h)
 add_library(workspace OBJECT ${WORKSPACE_SRCS} ${MOC_WORKSPACE_SRCS})
 add_dependencies(workspace moc_workspace)
+target_compile_definitions(workspace PRIVATE ${QT_DEFINITIONS})

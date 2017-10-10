@@ -19,3 +19,4 @@ qt2_wrap_moc(OPENGL_SRCS
 
 add_library(opengl OBJECT ${OPENGL_SRCS})
 add_dependencies(opengl moc_opengl)
+target_compile_definitions(opengl PRIVATE ${QT_DEFINITIONS})

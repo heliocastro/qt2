@@ -38,3 +38,4 @@ install(FILES ${DIALOGS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
 add_library(dialogs OBJECT ${DIALOGS_SRCS} ${MOC_DIALOGS_SRCS})
 add_dependencies(dialogs moc_dialogs)
+target_compile_definitions(dialogs PRIVATE ${QT_DEFINITIONS})

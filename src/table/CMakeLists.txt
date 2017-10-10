@@ -19,3 +19,4 @@ qt2_wrap_moc(TABLE_SRCS
 
 add_library(table OBJECT ${TABLE_SRCS} ${MOC_TABLE_SRCS})
 add_dependencies(table moc_table)
+target_compile_definitions(table PRIVATE ${QT_DEFINITIONS})

@@ -42,5 +42,6 @@ target_include_directories(moc-qt2 PUBLIC
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/src/tools
 )
+target_compile_options(moc-qt2 PRIVATE -Wno-format-security)
 
 install(TARGETS moc-qt2 RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

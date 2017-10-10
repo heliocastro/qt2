@@ -220,11 +220,8 @@ qt2_wrap_moc(KERNEL_SRCS
 
 add_library(kernel OBJECT ${KERNEL_SRCS} ${MOC_KERNEL_SRCS})
 add_dependencies(kernel moc_kernel)
-
-if(NOT SYSTEM_LIBPNG)
-    target_include_directories(kernel BEFORE PUBLIC
-        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/3rdparty/libpng>
-)
-endif()
-
-
+target_compile_definitions(kernel PRIVATE ${QT_DEFINITIONS})
+target_compile_options(kernel PRIVATE -Wno-format-security)
+target_include_directories(kernel BEFORE PUBLIC
+    $<$<NOT:$<BOOL:${SYSTEM_LIBPNG}>>:$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/3rdparty/libpng>>
+    )

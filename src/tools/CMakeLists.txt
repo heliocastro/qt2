@@ -107,5 +107,6 @@ set(TOOLS_HEADERS
     qvector.h
 )
 install(FILES ${TOOLS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
-
 add_library(tools OBJECT ${TOOLS_SRCS})
+target_compile_definitions(tools PRIVATE ${QT_DEFINITIONS})
+target_compile_options(tools PRIVATE -Wno-format-security)

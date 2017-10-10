@@ -17,3 +17,4 @@ install(FILES ${ICONVIEW_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
 add_library(iconview OBJECT ${ICONVIEW_SRCS} ${MOC_ICONVIEW_SRCS})
 add_dependencies(iconview moc_iconview)
+target_compile_definitions(iconview PRIVATE ${QT_DEFINITIONS})
