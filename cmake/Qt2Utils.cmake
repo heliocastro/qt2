@@ -13,7 +13,7 @@ function(qt2_wrap_cpp)
             OUTPUT ${outfileName}.moc
             COMMAND moc-qt2 ${realfile} -o ${outfileName}.moc
         )
-        list(APPEND ${outFiles} ${outfileName}.moc)
+        set(outFiles ${outFiles} ${outfileName}.moc)
     endforeach()
 
     string(TOUPPER ${arg_TARGET} MOCTARGET)
