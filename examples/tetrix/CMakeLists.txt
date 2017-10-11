@@ -19,4 +19,5 @@ qt2_wrap_moc(TETRIX_SRCS SOURCES ${TETRIX_HEADERS})
 qt2_wrap_cpp(TARGET tetrix SOURCES qdragapp.cpp)
 
 add_executable(tetrix ${TETRIX_SRCS})
+add_dependencies(tetrix moc_tetrix)
 target_link_libraries(tetrix Qt2)

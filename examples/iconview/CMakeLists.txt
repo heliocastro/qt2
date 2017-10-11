@@ -7,4 +7,5 @@ qt2_wrap_cpp(TARGET iconview_example SOURCES main.cpp)
 
 add_executable(iconview_example ${EXAMPLE_ICONVIEW_SRCS})
 target_link_libraries(iconview_example Qt2)
+add_dependencies(iconview_example moc_iconview_example)
 set_target_properties(iconview_example PROPERTIES OUTPUT_FILENAME iconview)
