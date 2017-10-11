@@ -47,8 +47,9 @@
 #include "qiodevice.h"
 #include "qmngio.h"
 
-#include <libmng.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <libmng.h>
 
 
 #ifndef QT_NO_ASYNC_IMAGE_IO
