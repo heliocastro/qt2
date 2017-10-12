@@ -9,4 +9,4 @@ set(QDIR_HEADERS
 qt2_wrap_moc(QDIR_SRCS SOURCES ${QDIR_HEADERS})
 
 add_executable(qdir ${QDIR_SRCS})
-target_link_libraries(qdir Qt2)
+target_link_libraries(qdir Qt::Qt2)

@@ -10,4 +10,4 @@ set(RANGECONTROLS_HEADERS
 qt2_wrap_moc(RANGECONTROLS_SRCS SOURCES ${RANGECONTROLS_HEADERS})
 
 add_executable(rangecontrols ${RANGECONTROLS_SRCS})
-target_link_libraries(rangecontrols Qt2)
+target_link_libraries(rangecontrols Qt::Qt2)

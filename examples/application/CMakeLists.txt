@@ -10,4 +10,4 @@ set(APPLICATION_HEADERS
 qt2_wrap_moc(APPLICATION_SRCS SOURCES ${APPLICATION_HEADERS})
 
 add_executable(application ${APPLICATION_SRCS})
-target_link_libraries(application Qt2)
+target_link_libraries(application Qt::Qt2)

@@ -12,4 +12,4 @@ set(DRAGDROP_HEADERS
 qt2_wrap_moc(DRAGDROP_SRCS SOURCES ${DRAGDROP_HEADERS})
 
 add_executable(dragdrop ${DRAGDROP_SRCS})
-target_link_libraries(dragdrop Qt2)
+target_link_libraries(dragdrop Qt::Qt2)

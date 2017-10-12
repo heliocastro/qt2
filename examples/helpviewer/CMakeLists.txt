@@ -10,4 +10,4 @@ set(HELPVIEWER_HEADERS
 qt2_wrap_moc(HELPVIEWER_SRCS SOURCES ${HELPVIEWER_HEADERS})
 
 add_executable(helpviewer ${HELPVIEWER_SRCS})
-target_link_libraries(helpviewer Qt2)
+target_link_libraries(helpviewer Qt::Qt2)

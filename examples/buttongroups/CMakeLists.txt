@@ -10,4 +10,4 @@ set(BUTTONGROUPS_HEADERS
 qt2_wrap_moc(BUTTONGROUPS_SRCS SOURCES ${BUTTONGROUPS_HEADERS})
 
 add_executable(buttongroups ${BUTTONGROUPS_SRCS})
-target_link_libraries(buttongroups Qt2)
+target_link_libraries(buttongroups Qt::Qt2)

@@ -11,4 +11,4 @@ set(TRAYICON_HEADERS
 qt2_wrap_moc(TRAYICON_SRCS SOURCES ${TRAYICON_HEADERS})
 
 add_executable(trayicon ${TRAYICON_SRCS})
-target_link_libraries(trayicon Qt2)
+target_link_libraries(trayicon Qt::Qt2)

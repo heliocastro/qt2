@@ -10,7 +10,7 @@ add_executable(uic-qt2
     )
 
 target_link_libraries(uic-qt2
-    Qt2
+    Qt::Qt2
     ZLIB::ZLIB
     )
 

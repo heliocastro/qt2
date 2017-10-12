@@ -10,4 +10,4 @@ set(DIRVIEW_HEADERS
 qt2_wrap_moc(DIRVIEW_SRCS SOURCES ${DIRVIEW_HEADERS})
 
 add_executable(dirview ${DIRVIEW_SRCS})
-target_link_libraries(dirview Qt2)
+target_link_libraries(dirview Qt::Qt2)

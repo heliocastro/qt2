@@ -12,4 +12,4 @@ set(ADDRESSBOOK_HEADERS
 qt2_wrap_moc(ADDRESSBOOK_SRCS SOURCES ${ADDRESSBOOK_HEADERS})
 
 add_executable(addressbook ${ADDRESSBOOK_SRCS})
-target_link_libraries(addressbook Qt2)
+target_link_libraries(addressbook Qt::Qt2)

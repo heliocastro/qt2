@@ -10,4 +10,4 @@ set(LISTBOXCOMBO_HEADERS
 qt2_wrap_moc(LISTBOXCOMBO_SRCS SOURCES ${LISTBOXCOMBO_HEADERS})
 
 add_executable(listboxcombo ${LISTBOXCOMBO_SRCS})
-target_link_libraries(listboxcombo Qt2)
+target_link_libraries(listboxcombo Qt::Qt2)

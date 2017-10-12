@@ -10,4 +10,4 @@ set(QFD_HEADERS
 qt2_wrap_moc(QFD_SRCS SOURCES ${QFD_HEADERS})
 
 add_executable(qfd ${QFD_SRCS})
-target_link_libraries(qfd Qt2)
+target_link_libraries(qfd Qt::Qt2)

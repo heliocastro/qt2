@@ -17,6 +17,10 @@ qt2_wrap_cpp(TARGET opengl
 qt2_wrap_moc(OPENGL_SRCS
     SOURCES qgl.h)
 
-add_library(opengl OBJECT ${OPENGL_SRCS})
-add_dependencies(opengl moc_opengl)
-target_compile_definitions(opengl PRIVATE ${QT_DEFINITIONS})
+add_qt2_object_library(opengl
+    SOURCES
+        ${OPENGL_SRCS}
+    COMPILE_DEFINITIONS
+        ${QT_DEFINITIONS}
+    GENERATE_MOC
+    )

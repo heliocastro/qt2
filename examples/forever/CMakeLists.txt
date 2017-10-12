@@ -9,4 +9,4 @@ set(FOREVER_HEADERS
 qt2_wrap_moc(FOREVER_SRCS SOURCES ${FOREVER_HEADERS})
 
 add_executable(forever ${FOREVER_SRCS})
-target_link_libraries(forever Qt2)
+target_link_libraries(forever Qt::Qt2)

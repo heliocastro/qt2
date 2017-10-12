@@ -10,4 +10,4 @@ set(NETWORKPROTOCOL_HEADERS
 qt2_wrap_moc(NETWORKPROTOCOL_SRCS SOURCES ${NETWORKPROTOCOL_HEADERS})
 
 add_executable(networkprotocol ${NETWORKPROTOCOL_SRCS})
-target_link_libraries(networkprotocol Qt2)
+target_link_libraries(networkprotocol Qt::Qt2)

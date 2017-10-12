@@ -9,4 +9,4 @@ set(STATISTICS_HEADERS
 qt2_wrap_moc(STATISTICS_SRCS SOURCES ${STATISTICS_HEADERS})
 
 add_executable(statistics ${STATISTICS_SRCS})
-target_link_libraries(statistics Qt2)
+target_link_libraries(statistics Qt::Qt2)

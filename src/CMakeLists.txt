@@ -33,8 +33,9 @@ add_library(Qt2 SHARED
     $<TARGET_OBJECTS:table>
     $<TARGET_OBJECTS:xml>
     $<TARGET_OBJECTS:opengl>
-    ${THIRD_PARTY_OBJECTS}
 )
+
+add_library(Qt::Qt2 ALIAS Qt2)
 
 target_link_libraries(Qt2
     ${FREETYPE_LIBRARIES}
@@ -45,7 +46,7 @@ target_link_libraries(Qt2
     ${JPEG_LIBRARIES}
     GLUT::GLUT
     OpenGL::GL
-    $<$<BOOL:${SYSTEM_LIBPNG}>:PNG::PNG>
+    PNG::PNG
     Threads::Threads
     ZLIB::ZLIB
 )
@@ -54,16 +55,20 @@ set_target_properties(Qt2 PROPERTIES
     OUTPUT_NAME qt2
     VERSION ${PROJECT_VERSION}
     SOVERSION ${PROJECT_VERSION_MAJOR}
+    LINK_FLAGS "-Wl,--as-needed -Wl,--no-undefined"
     )
 
-target_include_directories(Qt2 PUBLIC
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/qt2>
-    ${FREETYPE_INCLUDE_DIRS}
-    ${FONTCONFIG_INCLUDE_DIRS}
-    ${XFT_INCLUDE_DIRS}
-    ${X11_INCLUDE_DIRS}
-    ${MNG_INCLUDE_DIRS}
-    ${JPEG_INCLUDE_DIRS}
+target_include_directories(Qt2
+    PUBLIC
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/qt2>
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+    PRIVATE
+        ${FREETYPE_INCLUDE_DIRS}
+        ${FONTCONFIG_INCLUDE_DIRS}
+        ${XFT_INCLUDE_DIRS}
+        ${X11_INCLUDE_DIRS}
+        ${MNG_INCLUDE_DIRS}
+        ${JPEG_INCLUDE_DIRS}
     )
 
 install(TARGETS Qt2 EXPORT Qt2Targets

@@ -7,4 +7,8 @@ qt2_wrap_moc(INTEGRATION_SRCS
 
 add_library(integration OBJECT ${INTEGRATION_SRCS})
 
-target_include_directories(integration PRIVATE ../../shared)
+target_include_directories(integration
+        PRIVATE
+            ${PROJECT_SOURCE_DIR}/include
+            ../../shared
+        )

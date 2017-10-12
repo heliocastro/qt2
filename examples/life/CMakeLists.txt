@@ -12,4 +12,4 @@ set(LIFE_HEADERS
 qt2_wrap_moc(LIFE_SRCS SOURCES ${LIFE_HEADERS})
 
 add_executable(life ${LIFE_SRCS})
-target_link_libraries(life Qt2)
+target_link_libraries(life Qt::Qt2)

@@ -10,4 +10,4 @@ set(HELLO_HEADERS
 qt2_wrap_moc(HELLO_SRCS SOURCES ${HELLO_HEADERS})
 
 add_executable(hello ${HELLO_SRCS})
-target_link_libraries(hello Qt2)
+target_link_libraries(hello Qt::Qt2)

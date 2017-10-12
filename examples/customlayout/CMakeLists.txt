@@ -14,4 +14,4 @@ set(CUSTOMLAYOUT_HEADERS
 qt2_wrap_moc(CUSTOMLAYOUT_SRCS SOURCES ${CUSTOMLAYOUT_HEADERS})
 
 add_executable(customlayout ${CUSTOMLAYOUT_SRCS})
-target_link_libraries(customlayout Qt2)
+target_link_libraries(customlayout Qt::Qt2)

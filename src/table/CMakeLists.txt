@@ -17,6 +17,9 @@ qt2_wrap_cpp(TARGET table
 qt2_wrap_moc(TABLE_SRCS
     SOURCES qtable.h)
 
-add_library(table OBJECT ${TABLE_SRCS} ${MOC_TABLE_SRCS})
-add_dependencies(table moc_table)
-target_compile_definitions(table PRIVATE ${QT_DEFINITIONS})
+add_qt2_object_library(table
+    SOURCES
+        ${TABLE_SRCS}
+    COMPILE_DEFINITIONS
+        ${QT_DEFINITIONS}
+    )

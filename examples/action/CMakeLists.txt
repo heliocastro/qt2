@@ -10,4 +10,4 @@ set(ACTION_HEADERS
 qt2_wrap_moc(ACTION_SRCS SOURCES ${ACTION_HEADERS})
 
 add_executable(action ${ACTION_SRCS})
-target_link_libraries(action Qt2)
+target_link_libraries(action Qt::Qt2)

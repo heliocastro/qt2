@@ -5,4 +5,4 @@ set(DESKTOP_SRCS
 qt2_wrap_moc(DESKTOP_SRCS SOURCES ${DESKTOP_HEADERS})
 
 add_executable(desktop ${DESKTOP_SRCS})
-target_link_libraries(desktop Qt2)
+target_link_libraries(desktop Qt::Qt2)

@@ -112,14 +112,15 @@ add_executable(designer-qt2 ${DESIGNER_SRCS}
     )
 
 target_link_libraries(designer-qt2
-    Qt2
+    Qt::Qt2
     ZLIB::ZLIB
     )
 
 target_compile_definitions(designer-qt2 PRIVATE DESIGNER)
-target_include_directories(designer-qt2 PRIVATE
-    ../util
-    ../shared
+target_include_directories(designer-qt2
+    PRIVATE
+        ../util
+        ../shared
     )
 
 install(TARGETS designer-qt2 RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

@@ -12,4 +12,4 @@ set(GLPIXMAP_HEADERS
 qt2_wrap_moc(GLPIXMAP_SRCS SOURCES ${GLPIXMAP_HEADERS})
 
 add_executable(glpixmap ${GLPIXMAP_SRCS})
-target_link_libraries(glpixmap Qt2)
+target_link_libraries(glpixmap Qt::Qt2)

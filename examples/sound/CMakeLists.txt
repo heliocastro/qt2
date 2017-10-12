@@ -9,4 +9,4 @@ set(SOUND_HEADERS
 qt2_wrap_moc(SOUND_SRCS SOURCES ${SOUND_HEADERS})
 
 add_executable(sound ${SOUND_SRCS})
-target_link_libraries(sound Qt2)
+target_link_libraries(sound Qt::Qt2)

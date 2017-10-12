@@ -12,4 +12,4 @@ set(VALIDATOR_HEADERS
 qt2_wrap_moc(VALIDATOR_SRCS SOURCES ${VALIDATOR_HEADERS})
 
 add_executable(validator ${VALIDATOR_SRCS})
-target_link_libraries(validator Qt2)
+target_link_libraries(validator Qt::Qt2)

@@ -10,4 +10,4 @@ set(MDI_HEADERS
 qt2_wrap_moc(MDI_SRCS SOURCES ${MDI_HEADERS})
 
 add_executable(mdi ${MDI_SRCS})
-target_link_libraries(mdi Qt2)
+target_link_libraries(mdi Qt::Qt2)

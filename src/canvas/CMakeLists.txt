@@ -17,6 +17,9 @@ set(CANVAS_HEADERS
 )
 install(FILES ${CANVAS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
-add_library(canvas OBJECT ${CANVAS_SRCS} ${MOC_CANVAS_SRCS})
-add_dependencies(canvas moc_canvas)
-target_compile_definitions(canvas PRIVATE ${QT_DEFINITIONS})
+add_qt2_object_library(canvas
+    SOURCES
+        ${CANVAS_SRCS}
+    COMPILE_DEFINITIONS
+        ${QT_DEFINITIONS}
+    )

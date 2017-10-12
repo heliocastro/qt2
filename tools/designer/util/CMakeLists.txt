@@ -10,3 +10,4 @@ elseif(MSVC)
 endif()
 
 add_library(qutil OBJECT ${QUTIL_SRCS})
+target_include_directories(qutil PRIVATE ${PROJECT_SOURCE_DIR}/include)

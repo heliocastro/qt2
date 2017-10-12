@@ -9,4 +9,4 @@ set(POPUP_HEADERS
 qt2_wrap_moc(POPUP_SRCS SOURCES ${POPUP_HEADERS})
 
 add_executable(popup ${POPUP_SRCS})
-target_link_libraries(popup Qt2)
+target_link_libraries(popup Qt::Qt2)

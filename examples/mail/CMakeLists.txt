@@ -12,4 +12,4 @@ set(MAIL_HEADERS
 qt2_wrap_moc(MAIL_SRCS SOURCES ${MAIL_HEADERS})
 
 add_executable(mail ${MAIL_SRCS})
-target_link_libraries(mail Qt2)
+target_link_libraries(mail Qt::Qt2)

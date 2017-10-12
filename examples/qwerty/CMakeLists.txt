@@ -10,4 +10,4 @@ set(QWERTY_HEADERS
 qt2_wrap_moc(QWERTY_SRCS SOURCES ${QWERTY_HEADERS})
 
 add_executable(qwerty ${QWERTY_SRCS})
-target_link_libraries(qwerty Qt2)
+target_link_libraries(qwerty Qt::Qt2)

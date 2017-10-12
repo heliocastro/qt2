@@ -10,4 +10,4 @@ set(RICHTEXT_HEADERS
 qt2_wrap_moc(RICHTEXT_SRCS SOURCES ${RICHTEXT_HEADERS})
 
 add_executable(richtext ${RICHTEXT_SRCS})
-target_link_libraries(richtext Qt2)
+target_link_libraries(richtext Qt::Qt2)

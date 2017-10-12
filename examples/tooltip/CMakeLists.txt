@@ -10,4 +10,4 @@ set(TOOLTIP_HEADERS
 qt2_wrap_moc(TOOLTIP_SRCS SOURCES ${TOOLTIP_HEADERS})
 
 add_executable(tooltip ${TOOLTIP_SRCS})
-target_link_libraries(tooltip Qt2)
+target_link_libraries(tooltip Qt::Qt2)

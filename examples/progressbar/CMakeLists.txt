@@ -10,4 +10,4 @@ set(PROGRESSBAR_HEADERS
 qt2_wrap_moc(PROGRESSBAR_SRCS SOURCES ${PROGRESSBAR_HEADERS})
 
 add_executable(progressbar ${PROGRESSBAR_SRCS})
-target_link_libraries(progressbar Qt2)
+target_link_libraries(progressbar Qt::Qt2)

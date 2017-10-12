@@ -8,11 +8,10 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 include(GNUInstallDirs)
 include(Qt2Utils)
+include(Qt2InternalBuild)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--as-needed -Wl,--no-undefined")
 
 option(ENABLE_XFT "Enable support for Anti-Aliased fonts." ON)
 option(ENABLE_SESSION_MANAGEMENT "Support X Session Management, links in -lSM -lICE" ON)
@@ -64,10 +63,6 @@ if(SYSTEM_JPEG)
 endif()
 
 find_package(X11 REQUIRED)
-
-# This is really not the most optimal or pretty way to add the include directories
-# But at least we avoid to polute the main cmakelist files
-include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(src)
 add_subdirectory(tools)

@@ -10,4 +10,4 @@ set(SCRIBBLE_HEADERS
 qt2_wrap_moc(SCRIBBLE_SRCS SOURCES ${SCRIBBLE_HEADERS})
 
 add_executable(scribble ${SCRIBBLE_SRCS})
-target_link_libraries(scribble Qt2)
+target_link_libraries(scribble Qt::Qt2)

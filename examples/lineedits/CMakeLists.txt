@@ -10,4 +10,4 @@ set(LINEEDITS_HEADERS
 qt2_wrap_moc(LINEEDITS_SRCS SOURCES ${LINEEDITS_HEADERS})
 
 add_executable(lineedits ${LINEEDITS_SRCS})
-target_link_libraries(lineedits Qt2)
+target_link_libraries(lineedits Qt::Qt2)

@@ -10,4 +10,4 @@ set(ACLOCK_HEADERS
 qt2_wrap_moc(ACLOCK_SRCS SOURCES ${ACLOCK_HEADERS})
 
 add_executable(aclock ${ACLOCK_SRCS})
-target_link_libraries(aclock Qt2)
+target_link_libraries(aclock Qt::Qt2)

@@ -11,7 +11,11 @@ set(XML_HEADERS
 )
 install(FILES ${XML_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
-add_library(xml OBJECT ${XML_SRCS})
-target_compile_definitions(xml PRIVATE ${QT_DEFINITIONS})
-target_compile_options(xml PRIVATE -Wno-format-security)
-
+add_qt2_object_library(xml
+    SOURCES
+        ${XML_SRCS}
+    COMPILE_DEFINITIONS
+        ${QT_DEFINITIONS}
+    COMPILE_OPTIONS
+        -Wno-format-security
+    )

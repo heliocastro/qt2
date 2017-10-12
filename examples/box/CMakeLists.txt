@@ -12,4 +12,4 @@ set(BOX_HEADERS
 qt2_wrap_moc(BOX_SRCS SOURCES ${BOX_HEADERS})
 
 add_executable(box ${BOX_SRCS})
-target_link_libraries(box Qt2)
+target_link_libraries(box Qt::Qt2)

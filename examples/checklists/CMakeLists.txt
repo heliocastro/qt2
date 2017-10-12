@@ -10,4 +10,4 @@ set(CHECKLISTS_HEADERS
 qt2_wrap_moc(CHECKLISTS_SRCS SOURCES ${CHECKLISTS_HEADERS})
 
 add_executable(checklists ${CHECKLISTS_SRCS})
-target_link_libraries(checklists Qt2)
+target_link_libraries(checklists Qt::Qt2)

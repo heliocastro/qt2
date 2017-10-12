@@ -28,4 +28,4 @@ set(THEMES_HEADERS
 qt2_wrap_moc(THEMES_SRCS SOURCES ${THEMES_HEADERS})
 
 add_executable(themes ${THEMES_SRCS})
-target_link_libraries(themes Qt2)
+target_link_libraries(themes Qt::Qt2)

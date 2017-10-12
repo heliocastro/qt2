@@ -5,4 +5,4 @@ set(SPLITTER_SRCS
 qt2_wrap_moc(SPLITTER_SRCS SOURCES ${SPLITTER_HEADERS})
 
 add_executable(splitter ${SPLITTER_SRCS})
-target_link_libraries(splitter Qt2)
+target_link_libraries(splitter Qt::Qt2)

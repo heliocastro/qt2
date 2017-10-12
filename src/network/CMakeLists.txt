@@ -25,5 +25,10 @@ install(FILES ${NETWORK_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 qt2_wrap_moc(NETWORK_SRCS
     SOURCES ${NETWORK_HEADERS})
 
-add_library(network OBJECT ${NETWORK_SRCS} ${MOC_NETWORK_SRCS})
-target_compile_definitions(network PRIVATE ${QT_DEFINITIONS})
+
+add_qt2_object_library(network
+    SOURCES
+        ${NETWORK_SRCS}
+    COMPILE_DEFINITIONS
+        ${QT_DEFINITIONS}
+    )

@@ -12,4 +12,4 @@ set(T9_HEADERS
 qt2_wrap_moc(T9_SRCS SOURCES ${T9_HEADERS})
 
 add_executable(t9 ${T9_SRCS})
-target_link_libraries(t9 Qt2)
+target_link_libraries(t9 Qt::Qt2)

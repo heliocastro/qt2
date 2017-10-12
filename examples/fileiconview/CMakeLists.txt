@@ -14,4 +14,4 @@ set(FILEICONVIEW_HEADERS
 qt2_wrap_moc(FILEICONVIEW_SRCS SOURCES ${FILEICONVIEW_HEADERS})
 
 add_executable(fileiconview ${FILEICONVIEW_SRCS})
-target_link_libraries(fileiconview Qt2)
+target_link_libraries(fileiconview Qt::Qt2)

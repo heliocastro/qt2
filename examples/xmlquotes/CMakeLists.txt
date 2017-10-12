@@ -12,4 +12,4 @@ set(XMLQUOTES_HEADERS
 qt2_wrap_moc(XMLQUOTES_SRCS SOURCES ${XMLQUOTES_HEADERS})
 
 add_executable(xmlquotes ${XMLQUOTES_SRCS})
-target_link_libraries(xmlquotes Qt2)
+target_link_libraries(xmlquotes Qt::Qt2)

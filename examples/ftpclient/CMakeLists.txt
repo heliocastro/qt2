@@ -12,4 +12,4 @@ set(FTPCLIENT_HEADERS
 qt2_wrap_moc(FTPCLIENT_SRCS SOURCES ${FTPCLIENT_HEADERS})
 
 add_executable(ftpclient ${FTPCLIENT_SRCS})
-target_link_libraries(ftpclient Qt2)
+target_link_libraries(ftpclient Qt::Qt2)

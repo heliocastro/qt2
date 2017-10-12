@@ -10,4 +10,4 @@ set(DCLOCK_HEADERS
 qt2_wrap_moc(DCLOCK_SRCS SOURCES ${DCLOCK_HEADERS})
 
 add_executable(dclock ${DCLOCK_SRCS})
-target_link_libraries(dclock Qt2)
+target_link_libraries(dclock Qt::Qt2)

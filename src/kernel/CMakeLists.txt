@@ -215,13 +215,17 @@ qt2_wrap_moc(KERNEL_SRCS
     qtimer.h
     qlocalfs.h
     qurloperator.h
-    qwidget.h)
+    qwidget.h
+    )
 
-
-add_library(kernel OBJECT ${KERNEL_SRCS} ${MOC_KERNEL_SRCS})
-add_dependencies(kernel moc_kernel)
-target_compile_definitions(kernel PRIVATE ${QT_DEFINITIONS})
-target_compile_options(kernel PRIVATE -Wno-format-security)
-target_include_directories(kernel BEFORE PUBLIC
-    $<$<NOT:$<BOOL:${SYSTEM_LIBPNG}>>:$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/3rdparty/libpng>>
+add_qt2_object_library(kernel
+    SOURCES
+        ${KERNEL_SRCS}
+    COMPILE_DEFINITIONS
+        ${QT_DEFINITIONS}
+    COMPILE_OPTIONS
+        -Wno-format-security
+    INCLUDE_DIRS
+        $<$<NOT:$<BOOL:${SYSTEM_LIBPNG}>>:$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/3rdparty/libpng>>
+    GENERATE_MOCS
     )

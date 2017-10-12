@@ -10,4 +10,4 @@ set(LISTVIEWS_HEADERS
 qt2_wrap_moc(LISTVIEWS_SRCS SOURCES ${LISTVIEWS_HEADERS})
 
 add_executable(listviews ${LISTVIEWS_SRCS})
-target_link_libraries(listviews Qt2)
+target_link_libraries(listviews Qt::Qt2)

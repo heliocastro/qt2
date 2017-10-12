@@ -7,4 +7,4 @@ qt2_wrap_moc(XFORM_SRCS SOURCES ${XFORM_HEADERS})
 
 add_executable(xform ${XFORM_SRCS})
 add_dependencies(xform moc_xform)
-target_link_libraries(xform Qt2)
+target_link_libraries(xform Qt::Qt2)

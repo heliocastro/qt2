@@ -4,4 +4,4 @@ if(NOT SYSTEM_LIBPNG)
 endif()
 
 # We need to link any 3rdparty set of objects used
-set(THIRD_PARTY_OBJECTS ${LOCAL_OBJECTS} PARENT_SCOPE)
+#set(THIRD_PARTY_OBJECTS ${LOCAL_OBJECTS} PARENT_SCOPE)

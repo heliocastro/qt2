@@ -10,4 +10,4 @@ set(BIFF_HEADERS
 qt2_wrap_moc(BIFF_SRCS SOURCES ${BIFF_HEADERS})
 
 add_executable(biff ${BIFF_SRCS})
-target_link_libraries(biff Qt2)
+target_link_libraries(biff Qt::Qt2)

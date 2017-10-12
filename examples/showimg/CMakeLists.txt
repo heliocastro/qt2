@@ -13,4 +13,4 @@ set(SHOWIMG_HEADERS
 qt2_wrap_moc(SHOWIMG_SRCS SOURCES ${SHOWIMG_HEADERS})
 
 add_executable(showimg ${SHOWIMG_SRCS})
-target_link_libraries(showimg Qt2)
+target_link_libraries(showimg Qt::Qt2)

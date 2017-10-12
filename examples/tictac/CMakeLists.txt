@@ -10,4 +10,4 @@ set(TICTAC_HEADERS
 qt2_wrap_moc(TICTAC_SRCS SOURCES ${TICTAC_HEADERS})
 
 add_executable(tictac ${TICTAC_SRCS})
-target_link_libraries(tictac Qt2)
+target_link_libraries(tictac Qt::Qt2)
