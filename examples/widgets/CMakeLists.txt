@@ -10,4 +10,5 @@ qt2_wrap_moc(WIDGETS_EXAMPLE_SRCS SOURCES ${WIDGETS_HEADERS})
 
 add_executable(ex_widgets ${WIDGETS_EXAMPLE_SRCS})
 target_link_libraries(ex_widgets Qt::Qt2)
+target_compile_options(ex_widgets PRIVATE -Wno-format-security)
 set_target_properties(ex_widgets PROPERTIES OUTPUT_NAME widgets)
