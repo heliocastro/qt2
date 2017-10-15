@@ -30,9 +30,20 @@ elseif(MSVC)
         ${PROJECT_SOURCE_DIR}/src/tools/qfile_win.cpp)
 endif()
 
-add_executable(moc-qt2 ${MOC_SRCS} ${TOOLS_IMPORTED_SRCS})
+add_custom_command(
+    OUTPUT lex.yy.c
+    COMMAND flex -o lex.yy.c ${CMAKE_CURRENT_SOURCE_DIR}/moc.l
+    )
+add_custom_command(
+    OUTPUT mocgen.cpp
+    DEPENDS lex.yy.c
+    COMMAND yacc -d -o mocgen.cpp ${CMAKE_CURRENT_SOURCE_DIR}/moc.y
+    )
+add_custom_target(flexyacc
+    DEPENDS mocgen.cpp
+    )
 
-set(internalmoc CACHE moc-qt2 $<TARGET_FILE:moc>)
+add_executable(moc-qt2 ${MOC_SRCS} ${TOOLS_IMPORTED_SRCS})
 
 target_compile_definitions(moc-qt2 PRIVATE -DQT_NO_CODECS -DQT_LITE_UNICODE)
 
