@@ -96,7 +96,7 @@ configure_file(${PROJECT_SOURCE_DIR}/cmake/Qt2Config.cmake
 install(EXPORT Qt2Targets
     FILE Qt2Targets.cmake
     NAMESPACE Qt::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/qt2
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Qt2
     )
 
 install(FILES
