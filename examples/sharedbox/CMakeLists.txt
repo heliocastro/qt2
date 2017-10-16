@@ -12,4 +12,4 @@ set(SHAREDBOX_HEADERS
 qt2_wrap_moc(SHAREDBOX_SRCS SOURCES ${SHAREDBOX_HEADERS})
 
 add_executable(sharedbox ${SHAREDBOX_SRCS})
-target_link_libraries(sharedbox Qt::Qt2)
+target_link_libraries(sharedbox Qt::Qt2 OpenGL::GL)

@@ -38,17 +38,19 @@ add_library(Qt2 SHARED
 add_library(Qt::Qt2 ALIAS Qt2)
 
 target_link_libraries(Qt2
-    ${FREETYPE_LIBRARIES}
-    ${FONTCONFIG_LIBRARIES}
-    ${XFT_LIBRARIES}
-    ${X11_LIBRARIES}
-    ${MNG_LIBRARIES}
-    ${JPEG_LIBRARIES}
-    GLUT::GLUT
-    OpenGL::GL
-    PNG::PNG
-    Threads::Threads
-    ZLIB::ZLIB
+    PRIVATE
+        ${FREETYPE_LIBRARIES}
+        ${FONTCONFIG_LIBRARIES}
+        ${XFT_LIBRARIES}
+        ${X11_LIBRARIES}
+        ${MNG_LIBRARIES}
+        ${JPEG_LIBRARIES}
+        GLUT::GLUT
+        OpenGL::GL
+        PNG::PNG
+        ZLIB::ZLIB
+    PUBLIC
+        Threads::Threads
 )
 
 set_target_properties(Qt2 PROPERTIES
