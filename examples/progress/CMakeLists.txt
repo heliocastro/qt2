@@ -3,7 +3,7 @@ set(PROGRESS_SRCS
     )
 
 qt2_wrap_moc(PROGRESS_SRCS SOURCES ${PROGRESS_HEADERS})
-qt2_wrap_cpp(TARGET progress SOURCES progress.cpp)
+qt2_wrap_cpp(PROGRESS_SRCS SOURCES progress.cpp)
 
 add_executable(progress ${PROGRESS_SRCS})
 target_link_libraries(progress Qt::Qt2)

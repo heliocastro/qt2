@@ -2,7 +2,7 @@ set(SCROLLVIEW_SRCS
     scrollview.cpp
     )
 
-qt2_wrap_cpp(TARGET scrollview SOURCES scrollview.cpp)
+qt2_wrap_cpp(SCROLLVIEW_SRCS SOURCES scrollview.cpp)
 qt2_wrap_moc(SCROLLVIEW_SRCS SOURCES ${SCROLLVIEW_HEADERS})
 
 add_executable(scrollview ${SCROLLVIEW_SRCS})

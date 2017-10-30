@@ -25,7 +25,7 @@ set(DIALOGS_HEADERS
     qwizard.h
 )
 
-qt2_wrap_cpp(TARGET dialogs
+qt2_wrap_cpp(DIALOGS_SRCS
     SOURCES
     qcolordialog.cpp
     qfiledialog.cpp

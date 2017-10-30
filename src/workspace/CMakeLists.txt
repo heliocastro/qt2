@@ -9,7 +9,7 @@ set(WORKSPACE_HEADERS
 )
 install(FILES ${WORKSPACE_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
-qt2_wrap_cpp(TARGET workspace
+qt2_wrap_cpp(WORKSPACE_SRCS
     SOURCES
     qworkspace.cpp
 )

@@ -4,7 +4,7 @@ set(CANVAS_SRCS
     qcanvas.cpp
     )
 
-qt2_wrap_cpp(TARGET canvas
+qt2_wrap_cpp(CANVAS_SRCS
     SOURCES
     qcanvas.cpp
 )

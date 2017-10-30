@@ -10,7 +10,7 @@ set(OPENGL_HEADERS
 )
 install(FILES ${OPENGL_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
-qt2_wrap_cpp(TARGET opengl
+qt2_wrap_cpp(OPENGL_SRCS
     SOURCES ${OPENGL_SRCS}
 )
 
@@ -22,5 +22,4 @@ add_qt2_object_library(opengl
         ${OPENGL_SRCS}
     COMPILE_DEFINITIONS
         ${QT_DEFINITIONS}
-    GENERATE_MOC
     )

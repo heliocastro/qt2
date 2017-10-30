@@ -117,7 +117,7 @@ set(WIDGETS_HEADERS
     qwindowsstyle.h
 )
 
-qt2_wrap_cpp(TARGET widgets
+qt2_wrap_cpp(WIDGETS_SRCS
     SOURCES
     qeffects.cpp
     qmainwindow.cpp

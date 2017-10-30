@@ -9,7 +9,7 @@ set(TABLE_HEADERS
 )
 install(FILES ${TABLE_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
-qt2_wrap_cpp(TARGET table
+qt2_wrap_cpp(TABLE_SRCS
     SOURCES
     qtable.cpp
 )

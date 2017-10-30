@@ -4,7 +4,7 @@ set(ICONVIEW_SRCS
     qiconview.cpp
     )
 
-qt2_wrap_cpp(TARGET iconview
+qt2_wrap_cpp(ICONVIEW_SRCS
     SOURCES qiconview.cpp)
 
 qt2_wrap_moc(ICONVIEW_SRCS

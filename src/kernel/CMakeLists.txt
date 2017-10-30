@@ -183,8 +183,7 @@ set(KERNEL_HEADERS
 )
 install(FILES ${KERNEL_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
 
-qt2_wrap_cpp(
-    TARGET kernel
+qt2_wrap_cpp(KERNEL_SRCS
     SOURCES
     qapplication_x11.cpp
     qmovie.cpp

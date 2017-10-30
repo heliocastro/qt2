@@ -1,8 +1,8 @@
 include(CMakeParseArguments)
 
-function(qt2_wrap_cpp)
-    set(options VERBOSE)
-    set(oneValueArgs TARGET)
+function(qt2_wrap_cpp source_files)
+    set(options)
+    set(oneValueArgs)
     set(multiValueArgs SOURCES)
     cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -13,11 +13,12 @@ function(qt2_wrap_cpp)
             OUTPUT ${outfileName}.moc
             COMMAND moc-qt2 ${realfile} -o ${outfileName}.moc
         )
-        set(outFiles ${outFiles} ${outfileName}.moc)
+        # Check if header really generates output
+        list(APPEND ${outFiles} ${outfileName}.moc)
+        list(APPEND ${source_files} ${CMAKE_CURRENT_BINARY_DIR}/${outfileName}.moc)
     endforeach()
-
-    string(TOUPPER ${arg_TARGET} MOCTARGET)
-    add_custom_target(moc_${arg_TARGET} ALL DEPENDS ${outFiles})
+    
+    set(${source_files} ${${source_files}} PARENT_SCOPE)
 endfunction()
 
 function(qt2_wrap_moc mocable_files)
@@ -40,7 +41,6 @@ function(qt2_wrap_moc mocable_files)
     endforeach()
 
     set(${mocable_files} ${${mocable_files}} PARENT_SCOPE)
-    add_custom_target(moc_${mocable_files} ALL DEPENDS ${outFiles})
 endfunction()
 
 function(qt2_wrap_ui ui_target)

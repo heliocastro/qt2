@@ -1,14 +1,10 @@
 include(CMakeParseArguments)
 
 function(add_qt2_object_library target)
-    set(options GENERATE_MOC)
     set(multiValueArgs SOURCES COMPILE_OPTIONS COMPILE_DEFINITIONS INCLUDE_DIRS)
     cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     add_library(${target} OBJECT ${arg_SOURCES})
-    if(TARGET moc_${target})
-        add_dependencies(${target} moc_${target})
-    endif()
     if(arg_COMPILE_DEFINITIONS)
         target_compile_definitions(${target}
             PRIVATE
