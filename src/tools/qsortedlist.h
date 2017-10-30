@@ -48,7 +48,7 @@ template<class type> class Q_EXPORT QSortedList : public QList<type>
 public:
     QSortedList() {}
     QSortedList( const QSortedList<type> &l ) : QList<type>(l) {}
-    ~QSortedList() { clear(); }
+    ~QSortedList() { QGList::clear(); }
     QSortedList<type> &operator=(const QSortedList<type> &l)
       { return (QSortedList<type>&)QList<type>::operator=(l); }
 
