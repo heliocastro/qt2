@@ -21,8 +21,8 @@ option(SYSTEM_ZLIB "Use a zlib from the operating system" ON)
 option(SYSTEM_LIBPNG "Use libpng from the operating system." ON)
 option(SYSTEM_LIBMNG "Use libmng from the operating system." ON)
 option(SYSTEM_JPEG "Use jpeglib from the operating system." ON)
-option(BUILD_TUTORIAL "Build tutorials." ON)
-option(BUILD_EXAMPLES "Build examples." ON)
+option(BUILD_TUTORIAL "Build tutorials." OFF)
+option(BUILD_EXAMPLES "Build examples." OFF)
 
 find_package(PkgConfig REQUIRED)
 

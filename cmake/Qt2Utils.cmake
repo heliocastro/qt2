@@ -17,7 +17,7 @@ function(qt2_wrap_cpp source_files)
         list(APPEND ${outFiles} ${outfileName}.moc)
         list(APPEND ${source_files} ${CMAKE_CURRENT_BINARY_DIR}/${outfileName}.moc)
     endforeach()
-    
+
     set(${source_files} ${${source_files}} PARENT_SCOPE)
 endfunction()
 
