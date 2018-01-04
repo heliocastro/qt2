@@ -28,7 +28,7 @@ cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 
 project(qt2
     VERSION 2.3.2
-	LANGUAGES C CXX)
+    LANGUAGES C CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
@@ -45,7 +45,6 @@ option(ENABLE_THREAD_SUPPORT "Compile with Threading Support" ON)
 option(ENABLE_OPENGL "Compile OpenGL module" ON)
 option(SYSTEM_ZLIB "Use a zlib from the operating system" ON)
 option(SYSTEM_LIBPNG "Use libpng from the operating system." ON)
-option(SYSTEM_LIBMNG "Use libmng from the operating system." ON)
 option(SYSTEM_JPEG "Use jpeglib from the operating system." ON)
 option(BUILD_TUTORIAL "Build tutorials." OFF)
 option(BUILD_EXAMPLES "Build examples." OFF)
@@ -79,9 +78,17 @@ if(SYSTEM_LIBPNG)
     find_package(PNG REQUIRED)
 endif()
 
-if(SYSTEM_LIBMNG)
-    pkg_search_module(MNG libmng REQUIRED)
+pkg_search_module(MNG libmng)
+if(NOT MNG_FOUND)
+    find_library(MNG_LIBRARIES NAMES mng PATHS /usr/lib /usr/lib64 ${CMAKE_INSTALL_PREFIX} ${LIBMNG_LIBRARY_DIR})
+    find_path(MNG_INCLUDEDIR NAMES libmng.h PATHS /usr/include ${CMAKE_INSTALL_FULL_INCLUDEDIR} ${LIBMNG_INCLUDE_DIR})
+    if(NOT MNG_LIBRARIES)
+    message(STATUS "Unable to find MNG development files on your system. MNG support will be disabled")
+    add_definitions(-DQT_NO_IMAGEIO_MNG)
+    set(MNG_LIBRARIES "")
+    endif()
 endif()
+
 
 if(SYSTEM_JPEG)
     find_package(JPEG REQUIRED)
