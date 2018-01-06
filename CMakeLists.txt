@@ -96,6 +96,8 @@ if(SYSTEM_JPEG)
 endif()
 
 find_package(X11 REQUIRED)
+find_package(BYACC REQUIRED)
+find_package(FLEX REQUIRED)
 
 add_subdirectory(src)
 add_subdirectory(tools)

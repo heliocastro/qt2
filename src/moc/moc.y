@@ -1214,7 +1214,7 @@ extern "C" int hack_isatty( int )
 #include <unistd.h>
 #endif
 
-#include "lex.yy.c"
+#include "lex.yy"
 
 void 	  init();				// initialize
 void 	  initClass();				// prepare for new class

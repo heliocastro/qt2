@@ -24,8 +24,6 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-set(MOC_SRCS mocgen.cpp)
-
 # MOC is a special case, to boostrap moc we need to include
 # external source files
 set(TOOLS_IMPORTED_SRCS
@@ -56,20 +54,28 @@ elseif(MSVC)
         ${PROJECT_SOURCE_DIR}/src/tools/qfile_win.cpp)
 endif()
 
-add_custom_command(
-    OUTPUT lex.yy.c
-    COMMAND flex -o lex.yy.c ${CMAKE_CURRENT_SOURCE_DIR}/moc.l
-    )
-add_custom_command(
-    OUTPUT mocgen.cpp
-    DEPENDS lex.yy.c
-    COMMAND yacc -d -o mocgen.cpp ${CMAKE_CURRENT_SOURCE_DIR}/moc.y
-    )
-add_custom_target(flexyacc
-    DEPENDS mocgen.cpp
-    )
+byacc_target(MyParser moc.y ${CMAKE_CURRENT_BINARY_DIR}/mocgen.cpp)
+flex_target(MyScanner moc.l ${CMAKE_CURRENT_BINARY_DIR}/lex.yy)
+add_flex_byacc_dependency(MyScanner MyParser)
 
-add_executable(moc-qt2 ${MOC_SRCS} ${TOOLS_IMPORTED_SRCS})
+#add_custom_command(
+#    OUTPUT lex.yy.c
+#    COMMAND flex -o lex.yy.c ${CMAKE_CURRENT_SOURCE_DIR}/moc.l
+#    )
+#add_custom_command(
+#    OUTPUT mocgen.cpp
+#    DEPENDS lex.yy.c
+#    COMMAND yacc -d -o mocgen.cpp ${CMAKE_CURRENT_SOURCE_DIR}/moc.y
+#    )
+#add_custom_target(flexyacc
+#    DEPENDS mocgen.cpp
+#    )
+
+add_executable(moc-qt2
+    ${TOOLS_IMPORTED_SRCS}
+    ${BYACC_MyParser_OUTPUTS}
+    ${FLEX_MyScanner_OUTPUTS}
+    )
 
 target_compile_definitions(moc-qt2 PRIVATE -DQT_NO_CODECS -DQT_LITE_UNICODE)
 
