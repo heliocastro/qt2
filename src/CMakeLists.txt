@@ -65,19 +65,24 @@ add_library(Qt::Qt2 ALIAS Qt2)
 
 target_link_libraries(Qt2
     PRIVATE
-        ${FREETYPE_LIBRARIES}
-        ${FONTCONFIG_LIBRARIES}
-        ${XFT_LIBRARIES}
+		${FREETYPE_LIBRARIES}
+		${FONTCONFIG_LDFLAGS}
+		${FONTCONFIG_LIBRARIES}
         ${X11_LIBRARIES}
-        ${MNG_LIBRARIES}
         ${JPEG_LIBRARIES}
+        $<$<BOOL:XFT_FOUND>:Xft::Xft>
+        $<$<BOOL:MNG_FOUND>:MNG::MNG>
         GLUT::GLUT
         OpenGL::GL
         PNG::PNG
         ZLIB::ZLIB
     PUBLIC
         Threads::Threads
-)
+    )
+
+if(MNG_FOUND)
+    list(APPEND QT_DEFINITIONS QT_NO_IMAGEIO_MNG)
+endif()
 
 set_target_properties(Qt2 PROPERTIES
     OUTPUT_NAME qt2
@@ -93,9 +98,8 @@ target_include_directories(Qt2
     PRIVATE
         ${FREETYPE_INCLUDE_DIRS}
         ${FONTCONFIG_INCLUDE_DIRS}
-        ${XFT_INCLUDE_DIRS}
-        ${X11_INCLUDE_DIRS}
-        ${MNG_INCLUDE_DIRS}
+		${X11_INCLUDE_DIRS}
+		${X11_X11_INCLUDE_PATH}
         ${JPEG_INCLUDE_DIRS}
     )
 
