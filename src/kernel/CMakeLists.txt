@@ -252,5 +252,7 @@ add_qt2_object_library(kernel
         -Wno-format-security
     INCLUDE_DIRS
         $<$<NOT:$<BOOL:${SYSTEM_LIBPNG}>>:$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/3rdparty/libpng>>
+	${X11_INCLUDE_DIRS}
+	${X11_X11_INCLUDE_PATH}
     GENERATE_MOCS
     )

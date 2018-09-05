@@ -31,6 +31,7 @@ project(qt2
     LANGUAGES C CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 
 include(GNUInstallDirs)
 include(Qt2Utils)
@@ -52,7 +53,7 @@ option(BUILD_EXAMPLES "Build examples." OFF)
 find_package(PkgConfig REQUIRED)
 
 if(ENABLE_XFT)
-    pkg_search_module(XFT REQUIRED xft)
+    find_package(Xft REQUIRED)
     pkg_search_module(FONTCONFIG REQUIRED fontconfig)
     find_package(Freetype REQUIRED)
 endif()
@@ -78,17 +79,7 @@ if(SYSTEM_LIBPNG)
     find_package(PNG REQUIRED)
 endif()
 
-pkg_search_module(MNG libmng)
-if(NOT MNG_FOUND)
-    find_library(MNG_LIBRARIES NAMES mng PATHS /usr/lib /usr/lib64 ${CMAKE_INSTALL_PREFIX} ${LIBMNG_LIBRARY_DIR})
-    find_path(MNG_INCLUDEDIR NAMES libmng.h PATHS /usr/include ${CMAKE_INSTALL_FULL_INCLUDEDIR} ${LIBMNG_INCLUDE_DIR})
-    if(NOT MNG_LIBRARIES)
-    message(STATUS "Unable to find MNG development files on your system. MNG support will be disabled")
-    add_definitions(-DQT_NO_IMAGEIO_MNG)
-    set(MNG_LIBRARIES "")
-    endif()
-endif()
-
+find_package(MNG)
 
 if(SYSTEM_JPEG)
     find_package(JPEG REQUIRED)

@@ -48,4 +48,8 @@ add_qt2_object_library(opengl
         ${OPENGL_SRCS}
     COMPILE_DEFINITIONS
         ${QT_DEFINITIONS}
+    INCLUDE_DIRS
+	${X11_INCLUDE_DIRS}
+	${X11_X11_INCLUDE_PATH}
+	${OPENGL_INCLUDE_DIR}
     )
