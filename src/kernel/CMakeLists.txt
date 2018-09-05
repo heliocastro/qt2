@@ -31,6 +31,7 @@ if(ENABLE_XFT)
     include_directories(${FREETYPE_INCLUDE_DIR_ft2build})
 endif()
 
+
 set(KERNEL_SRCS
     qabstractlayout.cpp
     qaccel.cpp

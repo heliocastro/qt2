@@ -70,15 +70,19 @@ target_link_libraries(Qt2
 		${FONTCONFIG_LIBRARIES}
         ${X11_LIBRARIES}
         ${JPEG_LIBRARIES}
-		Xft::Xft
-		MNG::MNG
+        $<$<BOOL:XFT_FOUND>:Xft::Xft>
+        $<$<BOOL:MNG_FOUND>:MNG::MNG>
         GLUT::GLUT
         OpenGL::GL
         PNG::PNG
         ZLIB::ZLIB
     PUBLIC
         Threads::Threads
-)
+    )
+
+if(MNG_FOUND)
+    list(APPEND QT_DEFINITIONS QT_NO_IMAGEIO_MNG)
+endif()
 
 set_target_properties(Qt2 PROPERTIES
     OUTPUT_NAME qt2

@@ -11,40 +11,38 @@
 #
 # ::
 #
-#   MNG_INCLUDE_DIRS, where to find mng.h, etc.
-#   MNG_LIBRARY, the libraries needed to use MNG.
 #   MNG_FOUND, If false, do not try to use MNG.
+#   MNG_INCLUDE_DIR, where to find mng.h, etc.
+#   MNG_LIBRARIES, the libraries needed to use MNG.
 #
 
-find_package(PkgConfig REQUIRED)
+find_path(MNG_INCLUDE_DIR
+    NAMES
+        libmng.h
+    PATHS_SUFFIXES
+        include
+	)
 
-# Try first pkgconfig
-pkg_search_module(MNG libmng)
+find_library(MNG_LIBRARIES
+    NAMES
+        mng
+    PATH_SUFFIXES
+        lib
+        lib64
+	)
 
-if(NOT MNG_FOUND)
-    find_library(MNG_LIBRARY NAMES mng 
-	    PATHS
-	    	/usr/lib
-	    	/usr/local/lib
-		/usr/lib64
-		/usr/local/lib64
-		${CMAKE_INSTALL_PREFIX}
-		${LIBMNG_LIBRARY_DIR}
-		)
-    find_path(MNG_INCLUDE_DIRS NAMES libmng.h
-	    PATHS 
-	    	/usr/include
-	    	/usr/local/include
-    		${CMAKE_INSTALL_FULL_INCLUDEDIR}
-    		${LIBMNG_INCLUDE_DIR}
-	    )
-    if(NOT MNG_LIBRARY)
-	    message(STATUS "Unable to find MNG development files on your system. MNG support will be disabled")
-	    add_definitions(-DQT_NO_IMAGEIO_MNG)
-	    set(MNG_LIBRARIES "")
-    endif()
+include(FindPackageHandleStandardArgs)
+
+find_package_handle_standard_args(MNG
+    REQUIRED_VARS
+        MNG_LIBRARIES
+        MNG_INCLUDE_DIR
+    )
+
+if(NOT TARGET MNG::MNG)
+    add_library(MNG::MNG UNKNOWN IMPORTED)
+    set_target_properties(MNG::MNG PROPERTIES
+        INTERFACE_INCLUDE_DIRECTORIES "${MNG_INCLUDE_DIR}")
+    set_property(TARGET MNG::MNG APPEND PROPERTY
+        IMPORTED_LOCATION "${MNG_LIBRARIES}")
 endif()
-
-add_library(MNG::MNG UNKNOWN IMPORTED)
-set_target_properties(MNG::MNG PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${MNG_INCLUDE_DIRS}")
-set_property(TARGET MNG::MNG APPEND PROPERTY IMPORTED_LOCATION "${MNG_LIBRARY}")
