@@ -1314,7 +1314,8 @@ int main( int argc, char **argv )
 	    } else if ( opt == "ldbg" ) {	// lex debug output
 		lexDebug = TRUE;
 	    } else if ( opt == "ydbg" ) {	// yacc debug output
-		yydebug = TRUE;
+	    //#define YYDEBUG 1
+		// yydebug = TRUE;
 	    } else {
 		error = "Invalid argument";
 	    }

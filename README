@@ -7,18 +7,20 @@ ported to modern Cmake.
 Projects linking against Qt2 will be able to use:
 find_package(Qt2) and target_link_libraries(Qt::qt2) straight forward.
 
-This is a pure archeological computing work and to achieve the process the aim
-was avoid change code itself much, except for the build system.
-From the oriiginal Qt2 code,only configure and Makefile.in files was removed.
+This is obsolete software. Do not use on production systems.
+
+This is a purely archeological computing work. The Qt2 updates branch is intended
+to provide security and functionality fixes. There are no plans to add new features.
 
 A second part of this project is prove that porting old software is feasible
 and we do need start to take care of the history of code computing to not forget
 the past.
 
 If you want to compare the changes or want get original Qt code, go to the tag
-Original_Qt2
+Original_Qt2. You can also utilize the "classic" branch, which contains
+mostly unmodified Qt2 source code.
 
-This code uses same Qt2 licencing mode. Below are the original README
+This code uses the same Qt2 licencing model. Below is the original README
 
 ------------------------------------------------------------------------------
 

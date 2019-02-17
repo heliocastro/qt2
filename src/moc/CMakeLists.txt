@@ -65,7 +65,7 @@ add_flex_byacc_dependency(MyScanner MyParser)
 #add_custom_command(
 #    OUTPUT mocgen.cpp
 #    DEPENDS lex.yy.c
-#    COMMAND yacc -d -o mocgen.cpp ${CMAKE_CURRENT_SOURCE_DIR}/moc.y
+#    COMMAND byacc -d -o mocgen.cpp ${CMAKE_CURRENT_SOURCE_DIR}/moc.y
 #    )
 #add_custom_target(flexyacc
 #    DEPENDS mocgen.cpp

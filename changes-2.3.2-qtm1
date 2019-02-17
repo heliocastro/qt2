@@ -1,0 +1,12 @@
+Qt 2.3.2-qtm1 is a bugfix release. It keeps both forward and backward
+compatibility (source and binary) with Qt 2.3.2.
+
+==============
+=  General	 =
+==============
+
+- Removed the 'configs' directory, as it is no longer used by the new build system.
+- Fix compiling with G++ 8
+- byacc 1.9 breaks 'yydebug' in src/moc/moc.y - yydebug disabled for now until fix is made.
+- Update CMakeLists.txt to force use of byacc - as yacc is a link to bison on some systems.
+- Remove unnecessary moc.t in src/moc/
