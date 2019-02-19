@@ -1,0 +1,20 @@
+Qt 2.3.2-qtm2 is a security release. It is mostly backward
+compatible (source and binary) with Qt 2.3.2.
+
+==============
+=  General	 =
+==============
+
+- Removed MNG and JNG formats, due to issues with security, and lack of support/obsoletion
+
+
+==============
+=  Developer =
+=  Notes	 =
+==============
+
+If you have an application that uses MNG-format animated PNG images, there are a few possible solutions.
+
+- You can compile Qt with GIF support, and use a GIF.
+- You could request APNG support, and convert your MNG file to APNG. This would require supplying a patched version of libpng with Qt2.
+- You could remove an animated image altogether and use a static image

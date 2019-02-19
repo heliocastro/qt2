@@ -79,7 +79,6 @@ if(SYSTEM_LIBPNG)
     find_package(PNG REQUIRED)
 endif()
 
-find_package(MNG)
 
 if(SYSTEM_JPEG)
     find_package(JPEG REQUIRED)

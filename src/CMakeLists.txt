@@ -71,7 +71,6 @@ target_link_libraries(Qt2
         ${X11_LIBRARIES}
         ${JPEG_LIBRARIES}
         $<$<BOOL:XFT_FOUND>:Xft::Xft>
-        $<$<BOOL:MNG_FOUND>:MNG::MNG>
         GLUT::GLUT
         OpenGL::GL
         PNG::PNG
@@ -80,9 +79,6 @@ target_link_libraries(Qt2
         Threads::Threads
     )
 
-if(MNG_FOUND)
-    list(APPEND QT_DEFINITIONS QT_NO_IMAGEIO_MNG)
-endif()
 
 set_target_properties(Qt2 PROPERTIES
     OUTPUT_NAME qt2

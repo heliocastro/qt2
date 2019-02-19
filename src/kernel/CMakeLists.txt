@@ -67,7 +67,6 @@ set(KERNEL_SRCS
     qlocalfs.cpp
     qmetaobject.cpp
     qmime.cpp
-    qmngio.cpp
     qmotifdnd_x11.cpp
     qmovie.cpp
     qnetworkprotocol.cpp
@@ -152,7 +151,6 @@ set(KERNEL_HEADERS
     qlocalfs.h
     qmetaobject.h
     qmime.h
-    qmngio.h
     qmovie.h
     qnamespace.h
     qnetworkprotocol.h
